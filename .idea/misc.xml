@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/drawable/background_radius.xml" value="0.255" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_intro.xml" value="0.2" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_join.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_login.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_splash.xml" value="0.24947916666666667" />
       </map>
     </option>
   </component>
