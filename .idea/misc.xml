@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/drawable/background_radius.xml" value="0.255" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_intro.xml" value="0.2" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_join.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_login.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
+<<<<<<< HEAD
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1065" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/drawable/puppy.xml" value="0.1065" />
@@ -12,6 +17,9 @@
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/layout/activity_maker_register.xml" value="0.4370112945264987" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/layout/maker_register.xml" value="0.16666666666666666" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/xml/network_security_config.xml" value="0.12407407407407407" />
+=======
+        <entry key="..\:/Users/USER/DangDangee/app/src/main/res/layout/activity_splash.xml" value="0.24947916666666667" />
+>>>>>>> 94af9bb6dd156ce98b548398624f8ffd633a3a20
       </map>
     </option>
   </component>

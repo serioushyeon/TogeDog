@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".auth.IntroActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/sdsdsd"></ImageView>
+            <ImageView
+                android:src="@drawable/ajdajd"
+                android:layout_alignParentBottom="true"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="30dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/loginBtn"
+                    android:text="로그인"
+                    android:textSize="25dp"
+                    android:background="@drawable/background_radius"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="60dp"></Button>
+                <Button
+                    android:id="@+id/joinBtn"
+                    android:text="회원가입"
+                    android:textSize="25dp"
+                    android:background="@drawable/background_radius"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="60dp"></Button>
+                <Button
+                    android:id="@+id/noAccountBtn"
+                    android:text="비회원 가입"
+                    android:textSize="25dp"
+                    android:background="@drawable/background_radius"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="60dp"></Button>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
