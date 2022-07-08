@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DangDangee</string>
+    <string name="register">등록하기</string>
+    <string name="text_move_map_set_location">지도를 움직여 위치를 설정하세요</string>
+    <string name="centermarker">중심 마커</string>
+    <string name="crosshair">crosshair</string>
 </resources>
