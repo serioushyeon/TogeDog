@@ -8,6 +8,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.dangdangee.auth.IntroActivity
+import com.example.dangdangee.board.BoardWriteActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.LocationTrackingMode
@@ -26,8 +31,9 @@ class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
     private lateinit var naverMap: NaverMap //지도
     private lateinit var viewModel : MapViewModel //아직 쓸모 없음, 태그 번호 부여시 사용했음
     private var markers = ArrayList<Marker>() //마커를 담는 배열, 나중에는 데이터베이스에서 마커 정보 가져와야 할 듯
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
+        auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_map)
 
@@ -74,6 +80,18 @@ class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
         btn.setOnClickListener {
             val intent = Intent(this, MarkerRegisterActivity::class.java)
             activityResult.launch(intent)
+        }
+        val writebtn = findViewById<Button>(R.id.wbtn)
+        btn.setOnClickListener {
+            val intent = Intent(this, BoardWriteActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
+            auth.signOut()
+
+            val intent = Intent(this, IntroActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
+            startActivity(intent)
         }
     }
 
