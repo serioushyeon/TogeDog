@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dangdangee.auth.IntroActivity
 import com.example.dangdangee.board.Board
 import com.example.dangdangee.board.BoardWriteActivity
-import com.example.dangdangee.databinding.ActivityIntroBinding
-import com.example.dangdangee.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -87,15 +85,15 @@ class MainActivity : AppCompatActivity() , OnMapReadyCallback{
             activityResult.launch(intent)
         }
 
-        val writebtn = findViewById<Button>(R.id.wbtn)
-        writebtn.setOnClickListener {
-            val intent = Intent(this, BoardWriteActivity::class.java)
-            startActivity(intent)
-        }
 
         val boardbtn = findViewById<Button>(R.id.boardBtn)
         boardbtn.setOnClickListener {
             val intent = Intent(this, Board::class.java)
+            startActivity(intent)
+        }
+        val writebtn = findViewById<Button>(R.id.wbtn)
+        writebtn.setOnClickListener {
+            val intent = Intent(this, BoardWriteActivity::class.java)
             startActivity(intent)
         }
 

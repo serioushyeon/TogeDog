@@ -1,35 +1,67 @@
 package com.example.dangdangee.board
 
 import android.content.Context
-import android.graphics.drawable.DrawableContainer
+import android.content.Intent
+import android.graphics.ColorSpace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.board.BoardListLVAdapter
+import com.example.dangdangee.board.BoardModel
 import com.example.dangdangee.databinding.ActivityBoardBinding
-import com.example.dangdangee.databinding.ActivityIntroBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class Board : AppCompatActivity() {
     private lateinit var binding: ActivityBoardBinding
+
+    lateinit var  LVAdaper : BoardListLVAdapter
+
+    private val boardDataList = mutableListOf<BoardModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val list = mutableListOf<BoardModel>()
+
+        getData()
     }
 
-    /*override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_board, container, false)
+    fun getData(){
 
-        val boardlist = mutableListOf<BoardModel>()
-        boardlist.add(BoardModel("a", "b", "c", "d"))
+        val database = Firebase.database
+        val boardRef = database.getReference("board")
 
-        val boardRVAdaper = BoardListLVAdapter(boardlist)
-        binding.boardListView.adapter = boardRVAdaper
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(dataModel in dataSnapshot.children){
+                    val item = dataModel.getValue(BoardModel::class.java)
+                    boardDataList.add(item!!)
+                }
+                Log.d("Board",boardDataList.toString())
 
-        return binding.root
-    }*/
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                Log.w("Board", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.boardRef.addValueEventListener(postListener)
+    }
+
+
 
 }

@@ -28,6 +28,9 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
             view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item, parent,false)
 
         }
+
+
+
         return view!!
     }
 }
