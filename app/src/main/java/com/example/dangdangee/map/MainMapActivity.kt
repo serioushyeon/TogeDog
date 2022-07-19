@@ -1,4 +1,4 @@
-package com.example.dangdangee
+package com.example.dangdangee.map
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.dangdangee.R
 import com.example.dangdangee.auth.IntroActivity
+import com.example.dangdangee.board.Board
 import com.example.dangdangee.board.BoardWriteActivity
+import com.example.dangdangee.databinding.ActivityMainMapBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -26,6 +29,7 @@ import com.naver.maps.map.util.FusedLocationSource
 
 
 class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
+    private val binding by lazy { ActivityMainMapBinding.inflate(layoutInflater)}
     lateinit var mapView: MapView //지도를 표시할 뷰
     private lateinit var locationSource: FusedLocationSource //현재 위치 정보를 위한 것
     private lateinit var naverMap: NaverMap //지도
@@ -35,7 +39,7 @@ class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = Firebase.auth
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_map)
+        setContentView(binding.root)
 
         //네이버 지도 불러오기 준비
         mapView = findViewById<View>(R.id.map_view) as MapView
@@ -76,17 +80,20 @@ class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
         }
 
         //등록하기 버튼 누르면 마커 등록 액티비티 시작
-        val btn = findViewById<Button>(R.id.button)
-        btn.setOnClickListener {
+       binding.button.setOnClickListener {
             val intent = Intent(this, MarkerRegisterActivity::class.java)
             activityResult.launch(intent)
         }
-        val writebtn = findViewById<Button>(R.id.wbtn)
-        btn.setOnClickListener {
+        binding.wbtn.setOnClickListener {
             val intent = Intent(this, BoardWriteActivity::class.java)
             startActivity(intent)
         }
-        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
+        binding.boardBtn.setOnClickListener {
+            val intent = Intent(this, Board::class.java)
+            startActivity(intent)
+        }
+
+        binding.logoutBtn.setOnClickListener {
             auth.signOut()
 
             val intent = Intent(this, IntroActivity::class.java)

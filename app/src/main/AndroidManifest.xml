@@ -20,10 +20,10 @@
             android:name=".board.Board"
             android:exported="false" />
         <activity
-            android:name=".MainMapActivity"
+            android:name=".map.MainMapActivity"
             android:exported="false" />
         <activity
-            android:name=".MarkerRegisterActivity"
+            android:name=".map.MarkerRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

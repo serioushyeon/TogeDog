@@ -1,4 +1,4 @@
-package com.example.dangdangee
+package com.example.dangdangee.map
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.dangdangee.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
