@@ -31,13 +31,16 @@ class Board : AppCompatActivity() {
 
     private val boardDataList = mutableListOf<BoardModel>()
 
+    private val TAG = Board::class.java.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val list = mutableListOf<BoardModel>()
-
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_board)
+        LVAdaper = BoardListLVAdapter(boardDataList)
+        binding.boardListView.adapter=LVAdaper
         getData()
     }
+
 
     fun getData(){
 
@@ -46,17 +49,23 @@ class Board : AppCompatActivity() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                boardDataList.clear()
                 for(dataModel in dataSnapshot.children){
+
+                    Log.d(TAG,dataModel.toString())
+
                     val item = dataModel.getValue(BoardModel::class.java)
                     boardDataList.add(item!!)
                 }
-                Log.d("Board",boardDataList.toString())
-
+                LVAdaper.notifyDataSetChanged()
+               // Log.d(TAG,boardDataList.toString())
             }
+
+
 
             override fun onCancelled(databaseError: DatabaseError) {
 
-                Log.w("Board", "loadPost:onCancelled", databaseError.toException())
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
             }
         }
         FBRef.boardRef.addValueEventListener(postListener)

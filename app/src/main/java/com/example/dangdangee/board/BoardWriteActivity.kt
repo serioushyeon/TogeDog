@@ -13,7 +13,7 @@ import com.example.dangdangee.databinding.ActivityBoardWriteBinding
 
 class BoardWriteActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityBoardWriteBinding
+        private lateinit var binding : ActivityBoardWriteBinding
 
     private val TAG = BoardWriteActivity::class.java.simpleName
 

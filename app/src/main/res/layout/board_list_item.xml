@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/titleArea"
         android:text="title"
         android:textSize="20dp"
         android:layout_margin="15dp"
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
     ></TextView>
     <TextView
+        android:id="@+id/contentArea"
         android:text="content"
         android:textSize="15dp"
         android:layout_marginRight="20dp"
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         ></TextView>
     <TextView
+        android:id="@+id/timeArea"
         android:text="time"
         android:textSize="10dp"
         android:layout_marginTop="20dp"
