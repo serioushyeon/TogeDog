@@ -14,16 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DangDangee">
         <activity
-            android:name=".board.BoardActivity"
+            android:name=".map.ShowPathActivity"
             android:exported="false" />
         <activity
             android:name=".board.Board"
             android:exported="false" />
         <activity
-            android:name=".MainMapActivity"
-            android:exported="false" />
+            android:name=".map.MainMapActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".MarkerRegisterActivity"
+            android:name=".map.MarkerRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -42,13 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

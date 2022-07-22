@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dangdangee.auth.IntroActivity
 import com.example.dangdangee.board.Board
 import com.example.dangdangee.board.BoardWriteActivity
+import com.example.dangdangee.map.MapViewModel
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() , OnMapReadyCallback{
             val latitude = it.data?.getDoubleExtra("latitude", 0.0) ?: "".toDouble()
             val longitude = it.data?.getDoubleExtra("longitude", 0.0) ?: "".toDouble()
             if(longitude != 0.0 && latitude != 0.0){
-                var resultMarker = Marker().apply {
+                val resultMarker = Marker().apply {
                     tag = viewModel.count.value.toString()
                     viewModel.increaseCount()
                     position = LatLng(latitude, longitude)

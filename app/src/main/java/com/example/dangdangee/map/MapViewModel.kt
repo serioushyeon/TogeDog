@@ -1,4 +1,4 @@
-package com.example.dangdangee
+package com.example.dangdangee.map
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

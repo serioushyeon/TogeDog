@@ -1,4 +1,4 @@
-package com.example.dangdangee
+package com.example.dangdangee.map
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,11 +6,10 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.dangdangee.R
+import com.example.dangdangee.databinding.ActivityMarkerRegisterBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
@@ -25,10 +24,11 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     lateinit var viewModel : MapViewModel
+    private val binding by lazy { ActivityMarkerRegisterBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_marker_register)
+        setContentView(binding.root)
 
         // ViewModel
         viewModel = ViewModelProvider(this)[MapViewModel::class.java]
@@ -44,7 +44,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         }
 
         //지도 담을 맵뷰
-        mapView = findViewById<View>(R.id.register_map_view) as MapView
+        mapView = binding.registerMapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
     }
@@ -96,8 +96,8 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
         val resultIntent = Intent()
-        val tv = findViewById<TextView>(R.id.tv_location) //주소 표시
-        val fab = findViewById<FloatingActionButton>(R.id.fab) //추가 플로팅 버튼
+        val tv = binding.registerTvLocation //주소 표시
+        val fab = binding.registerFloatingbtn //추가 플로팅 버튼
         this.naverMap = naverMap
 
         //지도 영역 처리
