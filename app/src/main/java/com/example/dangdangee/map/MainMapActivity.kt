@@ -29,6 +29,7 @@ import com.naver.maps.map.util.FusedLocationSource
 
 
 class MainMapActivity : AppCompatActivity() , OnMapReadyCallback{
+
     private val binding by lazy { ActivityMainMapBinding.inflate(layoutInflater)}
     lateinit var mapView: MapView //지도를 표시할 뷰
     private lateinit var locationSource: FusedLocationSource //현재 위치 정보를 위한 것

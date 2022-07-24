@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DangDangee">
         <activity
+            android:name=".board.AddPhotoActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.BoardActivity"
             android:exported="false" />
         <activity

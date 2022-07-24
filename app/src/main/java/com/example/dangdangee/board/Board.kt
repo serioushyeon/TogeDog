@@ -41,7 +41,7 @@ class Board : AppCompatActivity() {
         getData()
     }
 
-
+    
     fun getData(){
 
         val database = Firebase.database

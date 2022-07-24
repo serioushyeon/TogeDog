@@ -36,19 +36,5 @@ class IntroActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.noAccountBtn.setOnClickListener {
-            auth.signInAnonymously()
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(this, MainMapActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
-                        startActivity(intent)
-                    } else {  // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(this,"로그인 실패", Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
-
-
     }
 }
