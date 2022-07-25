@@ -1,87 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.JoinActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="324dp"
+        android:background="@drawable/login"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="199dp"
+            android:layout_marginTop="66dp"
+            android:layout_marginEnd="182dp"
+            android:layout_marginBottom="47dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="312dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="69dp"
+            android:layout_marginBottom="97dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="44dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.738"></ImageView>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="68dp"
+            android:src="@drawable/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
-            android:text="회원가입"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></TextView>
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="같이 강아지를 찾아봐여"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:layout_height="380dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <EditText
+            android:id="@+id/nicknameArea"
+            style="@style/AuthEditText"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/background_login"
+            android:hint="  nickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></EditText>
+
         <EditText
             android:id="@+id/emailArea"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="email"
             style="@style/AuthEditText"
-            >
-        </EditText>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="#999999"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="0.5dp">
-        </LinearLayout>
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/background_login"
+            android:hint="  email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nicknameArea"></EditText>
 
         <EditText
             android:id="@+id/passwordArea1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:hint="password"
             style="@style/AuthEditText"
-            >
-        </EditText>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="#999999"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="0.5dp">
-        </LinearLayout>
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/background_login"
+            android:hint="  password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailArea"></EditText>
+
         <EditText
             android:id="@+id/passwordArea2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:hint="password check"
             style="@style/AuthEditText"
-            >
-        </EditText>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="#999999"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="0.5dp">
-        </LinearLayout>
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/background_login"
+            android:hint="  password check"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordArea1"></EditText>
+
         <Button
             android:id="@+id/joinBtn"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/background_radius"
             android:text="회원가입하기"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></Button>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordArea2"></Button>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
 </layout>

@@ -9,6 +9,7 @@ import com.example.dangdangee.map.MainMapActivity
 import com.example.dangdangee.R
 import com.example.dangdangee.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -27,12 +28,16 @@ class JoinActivity : AppCompatActivity() {
 
         binding.joinBtn.setOnClickListener {
             var isGoToJoin = true
-
+            val nickname=binding.nicknameArea.toString()
             val email=binding.emailArea.text.toString()
             val password1 = binding.passwordArea1.text.toString()
             val password2 = binding.passwordArea2.text.toString()
 
             //저기 값이 비어있는지 확인
+            if(nickname.isEmpty()) {
+                Toast.makeText(this,"닉네임을 입력해주세여", Toast.LENGTH_SHORT).show()
+                isGoToJoin=false
+            }
             if(email.isEmpty()) {
                 Toast.makeText(this,"이메일을 입력해주세여", Toast.LENGTH_SHORT).show()
                 isGoToJoin=false
@@ -59,7 +64,7 @@ class JoinActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this,"ok", Toast.LENGTH_SHORT).show()
-
+                            val user = auth.currentUser
                             val intent = Intent(this, MainMapActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
                             startActivity(intent)
