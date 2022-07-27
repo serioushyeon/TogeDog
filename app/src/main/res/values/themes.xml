@@ -13,6 +13,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="AuthEditText" parent="android:Widget.EditText">
@@ -20,5 +21,13 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/map_bottom_sheet_radius</item>
     </style>
 </resources>
