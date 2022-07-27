@@ -18,6 +18,7 @@ import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.board.BoardListLVAdapter
 import com.example.dangdangee.board.BoardModel
 import com.example.dangdangee.databinding.ActivityBoardBinding
+import com.example.dangdangee.map.MapBottomSheetFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -43,7 +44,6 @@ class Board : AppCompatActivity() {
 
     
     fun getData(){
-
         val database = Firebase.database
         val boardRef = database.getReference("board")
 

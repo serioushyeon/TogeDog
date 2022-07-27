@@ -4,6 +4,13 @@
     <string name="text_move_map_set_location">지도를 움직여 위치를 설정하세요</string>
     <string name="centermarker">중심 마커</string>
     <string name="crosshair">crosshair</string>
+    <string name="show_pet_image">show pet image</string>
+    <string name="show_address_marker_icon">show address marker icon</string>
+    <string name="show_kind_icon">show kind icon</string>
+    <string name="move_to_post">게시글 보기</string>
+    <string name="move_to_route_map">경로 보기</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="path">경로선</string>
+    <string name="show_pet_name">show_pet_name</string>
 </resources>
