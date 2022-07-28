@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.dangdangee.map.MainMapActivity
+
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 import com.example.dangdangee.databinding.ActivityJoinBinding
@@ -29,7 +29,7 @@ class JoinActivity : AppCompatActivity() {
 
         binding.joinBtn.setOnClickListener {
             var isGoToJoin = true
-            val nickname=binding.nicknameArea.toString()
+            var nickname=binding.nicknameArea.toString()
             val email=binding.emailArea.text.toString()
             val password1 = binding.passwordArea1.text.toString()
             val password2 = binding.passwordArea2.text.toString()
@@ -66,7 +66,7 @@ class JoinActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Toast.makeText(this,"ok", Toast.LENGTH_SHORT).show()
                             val user = auth.currentUser
-                            val intent = Intent(this, MainMapActivity::class.java)
+                            val intent = Intent(this, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
                             startActivity(intent)
 

@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListView
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.board.BoardListLVAdapter
@@ -26,24 +28,31 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class Board : AppCompatActivity() {
-    private lateinit var binding: ActivityBoardBinding
+    /*private lateinit var binding: ActivityBoardBinding
 
     lateinit var  LVAdaper : BoardListLVAdapter
 
     private val boardDataList = mutableListOf<BoardModel>()
 
     private val TAG = Board::class.java.simpleName
-
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_board)
+        setContentView(R.layout.activity_board)
+        /*binding = DataBindingUtil.setContentView(this,R.layout.activity_board)
         LVAdaper = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter=LVAdaper
-        getData()
+        getData()*/
+        val rv : RecyclerView = findViewById(R.id.rv_postList)
+        val items = ArrayList<MainViewModel>()
+        val rvAdapter = CustomAdapter(items)
+        rv.adapter = rvAdapter
+
+        rv.layoutManager = LinearLayoutManager(this)
     }
 
     
-    fun getData(){
+    /*fun getData(){
         val database = Firebase.database
         val boardRef = database.getReference("board")
 
@@ -69,7 +78,7 @@ class Board : AppCompatActivity() {
             }
         }
         FBRef.boardRef.addValueEventListener(postListener)
-    }
+    }*/
 
 
 

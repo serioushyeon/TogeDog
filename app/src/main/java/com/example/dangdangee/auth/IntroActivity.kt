@@ -3,10 +3,7 @@ package com.example.dangdangee.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.dangdangee.map.MainMapActivity
-import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 import com.example.dangdangee.databinding.ActivityIntroBinding
 import com.google.firebase.auth.FirebaseAuth
