@@ -20,7 +20,7 @@
     <item
         android:id="@+id/bottom_profile"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:icon="@drawable/logo"
         android:title=""
         app:showAsAction="always"
         />

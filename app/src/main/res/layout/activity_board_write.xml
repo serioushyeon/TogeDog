@@ -53,7 +53,7 @@
             android:background="@color/black">
         </LinearLayout>
         <ImageView
-            android:src="@drawable/plus"
+            android:src="@drawable/logo"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ImageView>
