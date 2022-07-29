@@ -23,9 +23,11 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_write)
 
-        binding.wirteBtn.setOnClickListener {
-            val title = binding.titleArea.text.toString()
-            val content = binding.contentArea.text.toString()
+        binding.btnConfirm.setOnClickListener {
+            val title = binding.evTitle.text.toString()
+            val breed = binding.evBreed.text.toString()
+            val lostday = binding.evTime.text.toString()
+            val content = binding.evText.text.toString()
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
@@ -37,7 +39,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .push()
-                .setValue(BoardModel(title,content,uid,time))
+                .setValue(BoardModel(title,breed,lostday,content,uid,time))
 
             Toast.makeText(this,"게시글 입력 완료",Toast.LENGTH_SHORT).show()
 

@@ -2,6 +2,7 @@ package com.example.dangdangee
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dangdangee.board.HomeFragment
 import com.example.dangdangee.databinding.ActivityMainBinding
 import com.example.dangdangee.map.MainMapFragment
 import com.example.dangdangee.map.MarkerRegisterFragment
@@ -9,6 +10,7 @@ import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity(){
     private var mapFragment: MainMapFragment = MainMapFragment()
+    private var BoardFragment: HomeFragment = HomeFragment()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity(){
                     return@OnItemSelectedListener true
                 }
                 R.id.bottom_board -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, BoardFragment)
+                        .commit()
                     return@OnItemSelectedListener true
                 }
                 R.id.bottom_profile -> {
