@@ -65,6 +65,8 @@ class HomeFragment : Fragment() {
                     boardDataList.add(item!!)
                     boardKeyList.add(dataModel.key.toString())
                 }
+                boardKeyList.reverse()
+                boardDataList.reverse()
                  Cadapter.notifyDataSetChanged()
                  Log.d(TAG,boardDataList.toString())
             }

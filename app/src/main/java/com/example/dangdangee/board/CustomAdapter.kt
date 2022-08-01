@@ -21,6 +21,7 @@ import com.google.firebase.ktx.Firebase
 
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
     private val boardKeyList = arrayListOf<String>()
+    private val boardDataList = arrayListOf<BoardModel>()
     private val TAG = HomeFragment::class.java.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.Viewholder {
@@ -60,8 +61,12 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for(dataModel in dataSnapshot.children){
+                    val item = dataModel.getValue(BoardModel::class.java)
+                    boardDataList.add(item!!)
                     boardKeyList.add(dataModel.key.toString())
                 }
+                boardKeyList.reverse()
+                boardDataList.reverse()
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
