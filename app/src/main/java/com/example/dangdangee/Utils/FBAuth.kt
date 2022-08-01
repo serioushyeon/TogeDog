@@ -17,6 +17,8 @@ class FBAuth {
 
         }
 
+
+
         fun getTime() : String{
             val currentDataTime = Calendar.getInstance().time
             val dataFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss",Locale.KOREA).format(currentDataTime)
