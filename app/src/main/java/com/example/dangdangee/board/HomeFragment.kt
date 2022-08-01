@@ -1,6 +1,7 @@
 
 package com.example.dangdangee.board
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 
 import com.example.dangdangee.Utils.FBRef
@@ -24,15 +26,20 @@ import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
     lateinit var  Cadapter : CustomAdapter
-    private val TAG = Board::class.java.simpleName
+    private val TAG = HomeFragment::class.java.simpleName
     private val boardDataList = arrayListOf<BoardModel>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): LinearLayout {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
-            setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(),2)
-            Cadapter = CustomAdapter(boardDataList)
             getData()
+            layoutManager = GridLayoutManager(requireContext(),2)
+            setHasFixedSize(true)
+            Cadapter = CustomAdapter(boardDataList)
+            binding.rvPostList.adapter = Cadapter
+        }
+        binding.floatingActionButton.setOnClickListener {
+            val intent = Intent(getActivity(), BoardWriteActivity::class.java)
+           startActivity(intent)
         }
         return binding.root
     }
@@ -52,11 +59,8 @@ class HomeFragment : Fragment() {
                     boardDataList.add(item!!)
                 }
                  Cadapter.notifyDataSetChanged()
-                // Log.d(TAG,boardDataList.toString())
+                 Log.d(TAG,boardDataList.toString())
             }
-
-
-
             override fun onCancelled(databaseError: DatabaseError) {
 
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
