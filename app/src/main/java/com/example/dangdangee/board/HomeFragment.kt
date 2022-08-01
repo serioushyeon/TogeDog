@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
 
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -28,6 +29,7 @@ class HomeFragment : Fragment() {
     lateinit var  Cadapter : CustomAdapter
     private val TAG = HomeFragment::class.java.simpleName
     private val boardDataList = arrayListOf<BoardModel>()
+    private val boardKeyList = arrayListOf<String>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): LinearLayout {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
@@ -37,12 +39,16 @@ class HomeFragment : Fragment() {
             Cadapter = CustomAdapter(boardDataList)
             binding.rvPostList.adapter = Cadapter
         }
+
+
         binding.floatingActionButton.setOnClickListener {
             val intent = Intent(getActivity(), BoardWriteActivity::class.java)
            startActivity(intent)
         }
         return binding.root
     }
+
+
 
     fun getData(){
         val database = Firebase.database
@@ -57,6 +63,7 @@ class HomeFragment : Fragment() {
 
                     val item = dataModel.getValue(BoardModel::class.java)
                     boardDataList.add(item!!)
+                    boardKeyList.add(dataModel.key.toString())
                 }
                  Cadapter.notifyDataSetChanged()
                  Log.d(TAG,boardDataList.toString())

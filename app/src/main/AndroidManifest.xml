@@ -14,11 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DangDangee">
         <activity
+            android:name=".board.PostActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.Board"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
