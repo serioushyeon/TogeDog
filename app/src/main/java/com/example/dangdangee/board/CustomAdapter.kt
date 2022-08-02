@@ -40,10 +40,9 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
 
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
-
+        val ctext = holder.itemView.context
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
-        val ctext = holder.itemView.context
 
         holder.itemView.setOnClickListener{
             onClick(ctext,position)
@@ -55,7 +54,6 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.rv_title)
         val writer = itemView.findViewById<TextView>(R.id.rv_writer)
-        val photos = itemView.findViewById<ImageView>(R.id.rv_dogProfile)
     }
 
 

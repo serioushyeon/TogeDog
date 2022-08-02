@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DangDangee">
         <activity
+            android:name=".board.BoardEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.PostActivity"
             android:exported="false" />
         <activity

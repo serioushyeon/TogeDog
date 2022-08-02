@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +18,7 @@ import com.example.dangdangee.databinding.ActivityBoardWriteBinding
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 class BoardWriteActivity : AppCompatActivity() {
 
@@ -26,6 +28,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
     private var isImageUpload = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,10 +37,10 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.btnConfirm.setOnClickListener {
             val title = binding.evTitle.text.toString()
+            val uid = FBAuth.getUid()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
             val content = binding.evText.text.toString()
-            val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
             Log.d(TAG,title)
@@ -53,11 +56,13 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .child(key)
-                .setValue(BoardModel(title,breed,lostday,content,uid,time))
+                .setValue(BoardModel(title,uid,breed,lostday,content,time))
 
             Toast.makeText(this,"게시글 입력 완료",Toast.LENGTH_SHORT).show()
             if(isImageUpload == true) {
+
                 imageUpload(key)
+
             }
             finish()
 
@@ -69,6 +74,8 @@ class BoardWriteActivity : AppCompatActivity() {
             isImageUpload = true
         }
     }
+
+
 
     private fun imageUpload(key : String){
         // Get the data from an ImageView as bytes
