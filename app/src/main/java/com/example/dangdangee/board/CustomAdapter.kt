@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.databinding.RvItemListBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -27,6 +28,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     private val boardDataList = arrayListOf<BoardModel>()
     private val TAG = HomeFragment::class.java.simpleName
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.Viewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_list,parent,false)
         return Viewholder(view)
@@ -38,7 +40,6 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
 
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
-
 
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
@@ -54,7 +55,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.rv_title)
         val writer = itemView.findViewById<TextView>(R.id.rv_writer)
-
+        val photos = itemView.findViewById<ImageView>(R.id.rv_dogProfile)
     }
 
 

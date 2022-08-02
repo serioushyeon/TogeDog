@@ -70,8 +70,8 @@ class HomeFragment : Fragment() {
                 }
                 boardKeyList.reverse()
                 boardDataList.reverse()
-                 Cadapter.notifyDataSetChanged()
-                 Log.d(TAG,boardDataList.toString())
+                Cadapter.notifyDataSetChanged()
+                Log.d(TAG,boardDataList.toString())
             }
             override fun onCancelled(databaseError: DatabaseError) {
 
