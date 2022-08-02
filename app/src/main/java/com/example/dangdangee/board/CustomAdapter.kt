@@ -8,8 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
@@ -35,6 +38,8 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
 
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
+
+
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
         val ctext = holder.itemView.context
@@ -49,7 +54,10 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.rv_title)
         val writer = itemView.findViewById<TextView>(R.id.rv_writer)
+
     }
+
+
     fun onClick(context: Context, position: Int) {
         val intent = Intent(context,PostActivity::class.java)
         intent.putExtra("key",boardKeyList[position])
@@ -75,4 +83,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         FBRef.boardRef.addValueEventListener(postListener)
     }
 
+
+
 }
+

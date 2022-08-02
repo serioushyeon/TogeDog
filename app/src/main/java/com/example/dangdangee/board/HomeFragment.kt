@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class HomeFragment : Fragment() {
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(getActivity(), BoardWriteActivity::class.java)
            startActivity(intent)
         }
+
         return binding.root
     }
 

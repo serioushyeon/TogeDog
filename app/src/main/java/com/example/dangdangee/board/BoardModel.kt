@@ -1,7 +1,9 @@
 package com.example.dangdangee.board
 
+import com.example.dangdangee.Utils.FBRef
+
 data class BoardModel (
-    val key : String = "",
+    val keyphoto : String = FBRef.boardRef.push().key.toString()+"png",
     val title : String = "",
     val content : String = "",
     val breed : String = "",
