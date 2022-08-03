@@ -8,9 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityPostBinding
 import com.google.firebase.database.DataSnapshot
@@ -91,6 +93,15 @@ class PostActivity : AppCompatActivity() {
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
+
+                    val myuid = FBAuth.getUid()
+                    val writerUid = dataModel?.uid
+                    if(myuid.equals(writerUid)){
+                        binding.boardSettingIcon.isVisible = true
+                    }else{
+
+                    }
+
                 }catch (e: Exception){
                     Log.w(TAG, "삭제완료")
                 }

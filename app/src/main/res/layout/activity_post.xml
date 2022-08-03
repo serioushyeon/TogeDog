@@ -102,6 +102,7 @@
 
                 <ImageView
                     android:id="@+id/boardSettingIcon"
+                    android:visibility="invisible"
                     android:layout_width="20dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="249dp"
