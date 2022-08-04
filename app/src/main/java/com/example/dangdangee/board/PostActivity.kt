@@ -99,7 +99,7 @@ class PostActivity : AppCompatActivity() {
                     if(myuid.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
                     }else{
-
+                        binding.getImageArea.isVisible = false
                     }
 
                 }catch (e: Exception){
