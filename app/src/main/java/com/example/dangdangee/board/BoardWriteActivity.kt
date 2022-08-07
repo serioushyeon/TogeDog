@@ -59,7 +59,7 @@ class BoardWriteActivity : AppCompatActivity() {
                 .setValue(BoardModel(title,uid,breed,lostday,content,time))
 
             Toast.makeText(this,"게시글 입력 완료",Toast.LENGTH_SHORT).show()
-            if(isImageUpload == true) {
+            if(isImageUpload) {
 
                 imageUpload(key)
 

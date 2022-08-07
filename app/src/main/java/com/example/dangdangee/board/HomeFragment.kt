@@ -6,16 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.databinding.DataBindingUtil
 
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
-import com.example.dangdangee.MainActivity
-import com.example.dangdangee.R
 
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.FragmentHomeBinding
@@ -24,28 +19,27 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 
 class HomeFragment : Fragment() {
-    lateinit var  Cadapter : CustomAdapter
+    lateinit var  customAdapter : CustomAdapter
     private val TAG = HomeFragment::class.java.simpleName
     private val boardDataList = arrayListOf<BoardModel>()
     private val boardKeyList = arrayListOf<String>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): LinearLayout {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
             getData()
             layoutManager = GridLayoutManager(requireContext(),2)
             setHasFixedSize(true)
-            Cadapter = CustomAdapter(boardDataList)
-            binding.rvPostList.adapter = Cadapter
+            customAdapter = CustomAdapter(boardDataList)
+            binding.rvPostList.adapter = customAdapter
         }
 
 
         binding.floatingActionButton.setOnClickListener {
-            val intent = Intent(getActivity(), BoardWriteActivity::class.java)
-           startActivity(intent)
+           startActivity(Intent(activity, BoardWriteActivity::class.java))
         }
 
         return binding.root
@@ -53,24 +47,24 @@ class HomeFragment : Fragment() {
 
 
 
-    fun getData(){
+    private fun getData(){
         val database = Firebase.database
         val boardRef = database.getReference("board")
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                boardDataList.clear()
-                for(dataModel in dataSnapshot.children){
+                    boardDataList.clear()
+                    for(dataModel in dataSnapshot.children){
 
-                    Log.d(TAG,dataModel.toString())
+                        Log.d(TAG,dataModel.toString())
 
-                    val item = dataModel.getValue(BoardModel::class.java)
+                        val item = dataModel.getValue(BoardModel::class.java)
                     boardDataList.add(item!!)
                     boardKeyList.add(dataModel.key.toString())
                 }
                 boardKeyList.reverse()
                 boardDataList.reverse()
-                Cadapter.notifyDataSetChanged()
+                customAdapter.notifyDataSetChanged()
                 Log.d(TAG,boardDataList.toString())
             }
             override fun onCancelled(databaseError: DatabaseError) {

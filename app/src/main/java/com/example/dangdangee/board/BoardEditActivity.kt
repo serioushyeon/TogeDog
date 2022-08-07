@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -24,8 +25,7 @@ class BoardEditActivity : AppCompatActivity() {
 
     private lateinit var key: String
     private lateinit var binding: ActivityBoardEditBinding
-    private val TAG = BoardEditActivity::class.java.simpleName
-
+    private var isImageUpload = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,13 @@ class BoardEditActivity : AppCompatActivity() {
         binding.btnConfirm2.setOnClickListener {
             editBoardData(key)
         }
+        binding.ivProfile2.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
+            isImageUpload = true
+        }
+
+
     }
 
     private fun editBoardData(key: String){

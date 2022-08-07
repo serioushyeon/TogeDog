@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.comment.CommentLVAdapter
+import com.example.dangdangee.comment.CommentModel
 import com.example.dangdangee.databinding.ActivityPostBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,6 +29,9 @@ class PostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPostBinding
     private lateinit var key: String
+    private val commentDataList = mutableListOf<CommentModel>()
+    private val commentKeyList = mutableListOf<String>()
+    private lateinit var  commentAdapter : CommentLVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -41,6 +47,79 @@ class PostActivity : AppCompatActivity() {
         getBoardData(key)
         getImageData(key)
 
+        binding.commentBtn.setOnClickListener {
+            insertComment(key)
+        }
+
+        commentAdapter = CommentLVAdapter(commentDataList)
+        binding.commentLV.adapter= commentAdapter
+
+        getCommentData(key)
+        binding.commentLV.setOnItemClickListener{
+                parent,view, position, id->
+            //keyList에 있는 key 받아오기
+            key = commentKeyList[position]
+            //Toast.makeText(this,key,Toast.LENGTH_LONG).show()
+            showDialog2()
+
+        }
+
+    }
+
+    private fun getCommentData(key: String) {
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                try {
+                    commentDataList.clear()
+                    for (dataModel in dataSnapshot.children) {
+                        Log.d(TAG, dataModel.toString())
+                        dataModel.key
+                        val item = dataModel.getValue(CommentModel::class.java)
+                        commentDataList.add(item!!)
+                        commentKeyList.add(dataModel.key.toString())
+                    }
+
+                    //어뎁터 동기화
+                    commentAdapter.notifyDataSetChanged()
+
+                } catch (e: Exception) {
+                    Log.d(TAG, "삭제완료")
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "loadPost : onCancelled", databaseError.toException())
+            }
+
+        }
+        FBRef.commentRef.child(key).addValueEventListener(postListener)
+
+    }
+
+    fun insertComment(key: String){
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(binding.commentArea.text.toString())
+                                    ,FBAuth.getTime()
+                )
+        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
+        binding.commentArea.setText("")
+
+    }
+
+    private fun showDialog2(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("삭제하시겠습니까?")
+        val alertDialog = mBuilder.show()
+
+        alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
+            FBRef.commentRef.child(key).removeValue()
+            Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     private fun showDialog(){
@@ -99,7 +178,7 @@ class PostActivity : AppCompatActivity() {
                     if(myuid.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
                     }else{
-                        binding.getImageArea.isVisible = false
+
                     }
 
                 }catch (e: Exception){
