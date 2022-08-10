@@ -12,7 +12,6 @@ import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
-import com.example.dangdangee.databinding.ActivityBoardBinding
 import com.example.dangdangee.databinding.ActivityBoardEditBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

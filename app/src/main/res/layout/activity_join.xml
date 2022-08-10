@@ -80,6 +80,7 @@
             android:layout_weight="1"
             android:text="같이 강아지를 찾아봐여"
             android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -149,6 +150,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/background_radius"
             android:text="회원가입하기"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordArea2"></Button>

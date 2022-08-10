@@ -3,19 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <Button
         android:id="@+id/editbtn"
-        android:text="수정"
         android:layout_width="match_parent"
-        android:background="@drawable/background_radius"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_height="wrap_content"></Button>
+        android:background="@drawable/background_radius"
+        android:text="수정"
+        android:textColor="#FFFFFF"></Button>
+
     <Button
         android:id="@+id/deletebtn"
-        android:text="삭제"
         android:layout_width="match_parent"
-        android:background="@drawable/background_radius"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_height="wrap_content"></Button>
+        android:background="@drawable/background_radius"
+        android:text="삭제"
+        android:textColor="#FFFFFF"></Button>
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
     private val boardDataList = arrayListOf<BoardModel>()
     private val boardKeyList = arrayListOf<String>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): LinearLayout {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): FrameLayout {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
             getData()
