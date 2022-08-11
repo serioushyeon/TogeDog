@@ -22,7 +22,7 @@ class MapBottomSheetFragment : BottomSheetDialogFragment() {
     lateinit var breed : String
     lateinit var img : Drawable
     lateinit var key : String
-    var flag = true
+    var flag = true //true면 경로 보기 버튼 뜸, false면 경로 보기 버튼 안 뜸(이미 경로 액티비티일 때)
 
 
     override fun onCreateView(

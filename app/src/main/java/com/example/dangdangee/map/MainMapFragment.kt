@@ -25,33 +25,32 @@ import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 
-
 class MainMapFragment : Fragment(), OnMapReadyCallback {
-    private lateinit var mapref: DatabaseReference
+    private lateinit var mapRef: DatabaseReference
     private lateinit var locationSource: FusedLocationSource //현재 위치 정보를 위한 것
     private lateinit var naverMap: NaverMap //지도
     private lateinit var auth: FirebaseAuth
+    private var markers = ArrayList<MapModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-        mapref = Firebase.database.getReference("Marker")
+        mapRef = Firebase.database.getReference("Marker")
         val markerListener = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 val marker = dataSnapshot.getValue(MapModel::class.java)
                 if(marker!!.tag == "F") {
-                    addMarker(marker, naverMap)
+                    addMarker(marker, dataSnapshot.key!!, naverMap)
                 }
             }
             override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 Log.d(TAG, "onChildChanged: ${dataSnapshot.key}")
                 val marker = dataSnapshot.getValue(MapModel::class.java)
-                updateMarker(marker!!)
+                updateMarker(marker!!, dataSnapshot.key!!)
             }
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
                 Log.d(TAG, "onChildRemoved:" + dataSnapshot.key!!)
-                val marker = dataSnapshot.getValue(MapModel::class.java)
-                removeMarker(marker!!)
+                removeMarker(dataSnapshot.key!!)
             }
             override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 Log.d(TAG, "onChildMoved:" + dataSnapshot.key!!)
@@ -60,7 +59,7 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
                 Log.w(TAG, "postComments:onCancelled", databaseError.toException())
             }
         }
-        mapref.addChildEventListener(markerListener)
+        mapRef.addChildEventListener(markerListener)
     }
 
     override fun onCreateView(
@@ -108,7 +107,7 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
 
     //마커 & 정보창 등록 함수
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun addMarker(mapModel: MapModel, navermap : NaverMap){
+    private fun addMarker(mapModel: MapModel, mid: String, navermap : NaverMap) {
         val marker = Marker()
         marker.position = LatLng(mapModel.lat, mapModel.lng)
         marker.tag = mapModel.tag //최초 등록 or 경로 구분 태그
@@ -139,13 +138,21 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
             false
         }
         mapModel.marker = marker
+        mapModel.mid = mid
+        markers.add(mapModel)
     }
-    fun updateMarker(mapModel: MapModel){
-       /* mapModel.marker?.map = null
-        addMarker(mapModel, naverMap)*/
+    fun updateMarker(mapModel: MapModel, mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
+        }
+        addMarker(mapModel, mid, naverMap)
     }
-    fun removeMarker(mapModel: MapModel){
-        //mapModel.marker?.map = null
+    fun removeMarker(mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
+        }
     }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000

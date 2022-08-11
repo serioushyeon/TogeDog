@@ -25,44 +25,21 @@ import com.naver.maps.map.overlay.PathOverlay
 import com.naver.maps.map.util.FusedLocationSource
 
 class PathActivity: AppCompatActivity(), OnMapReadyCallback {
-    private lateinit var mapref: DatabaseReference
+    private lateinit var mapRef: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private var markers = mutableListOf<MapModel>()
     private lateinit var key : String
+    private val path = PathOverlay()
+
     private val binding by lazy { ActivityPathBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        mapref = Firebase.database.getReference("Marker")
+        mapRef = Firebase.database.getReference("Marker")
         key = intent.getStringExtra("key")!!
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
-
-        val queryListener = object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val marker = snapshot.getValue(MapModel::class.java)
-                if(marker!!.key == key)
-                markers.add(marker)
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w(ContentValues.TAG, "postComments:onCancelled", databaseError.toException())
-            }
-        }
-        mapref.addChildEventListener(queryListener)
 
         val fm = supportFragmentManager
         val mapFragment = fm.findFragmentById(R.id.map_path_frame) as MapFragment?
@@ -86,14 +63,46 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.NoFollow //위치 변해도 지도 안움직임
         naverMap.uiSettings.isLocationButtonEnabled = true //현재 위치 버튼 활성화
+        val queryListener = object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val marker = snapshot.getValue(MapModel::class.java)
+                if(marker!!.key == key)
+                    addMarker(marker, snapshot.key!!, naverMap)
+                updatePath()
+            }
 
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                Log.d(ContentValues.TAG, "onChildChanged: ${snapshot.key}")
+                val marker = snapshot.getValue(MapModel::class.java)
+                updateMarker(marker!!, snapshot.key!!)
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                Log.d(ContentValues.TAG, "onChildRemoved:" + snapshot.key!!)
+                removeMarker(snapshot.key!!)
+                updatePath()
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                Log.d(ContentValues.TAG, "onChildMoved:" + snapshot.key!!)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(ContentValues.TAG, "postComments:onCancelled", databaseError.toException())
+            }
+        }
+        mapRef.addChildEventListener(queryListener)
+    }
+
+    fun updatePath(){
+        path.map = null
         val coords : ArrayList<LatLng> = ArrayList()
         for(i in markers.indices){
-            coords.add(LatLng(markers[i].lat, markers[i].lng))
-            addMarker(markers[i], naverMap)
+            if(markers[i].marker!!.map != null)
+                coords.add(LatLng(markers[i].lat, markers[i].lng))
         }
         if(coords.size >= 2) {
-            val path = PathOverlay()
             path.coords = coords
             path.width = 30
             path.outlineWidth = 0
@@ -103,13 +112,10 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
             path.color = Color.rgb(63, 121, 255)
             path.map = naverMap
         }
-        else{
-            addMarker(markers[0], naverMap)
-        }
     }
     //마커 & 정보창 등록 함수
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun addMarker(mapModel:MapModel, naverMap: NaverMap){
+    private fun addMarker(mapModel:MapModel, mid: String, naverMap: NaverMap) {
         val marker = Marker()
         marker.position = LatLng(mapModel.lat, mapModel.lng)
         marker.tag = mapModel.tag //최초 등록 or 경로 구분 태그
@@ -135,13 +141,28 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
             bottomSheet.breed = mapModel.breed
             bottomSheet.img = resources.getDrawable(R.drawable.map_sample_dog, null)
             bottomSheet.key = mapModel.key //수정 필요
-            bottomSheet.flag = false
+            bottomSheet.flag = false //true면 경로 보기 버튼 뜸, false면 경로 보기 버튼 안 뜸(이미 경로 액티비티일 때)
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
             false
+        }
+        mapModel.marker = marker
+        mapModel.mid = mid
+        markers.add(mapModel)
+    }
+    fun updateMarker(mapModel: MapModel, mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
+        }
+        addMarker(mapModel, key, naverMap)
+    }
+    fun removeMarker(mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
         }
     }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
-
 }

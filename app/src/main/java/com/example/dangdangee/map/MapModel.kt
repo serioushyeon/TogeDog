@@ -9,8 +9,9 @@ data class MapModel(
     val name: String = "",
     val address: String = "",
     val breed: String = "",
-    val key: String = "", //게시글의 key 값, 게시글 등록 시 저장
+    val key: String = "", //게시글의 파이어베이스 key 값, 게시글 등록 시 저장
     val time: String ="", // 시간별로 경로
     val img: String = "",
-    var marker: Marker? = null
+    var marker: Marker? = null, //마커
+    var mid : String = "" //마커의 파이어베이스 키값
 )

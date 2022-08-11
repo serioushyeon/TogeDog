@@ -1,5 +1,6 @@
 package com.example.dangdangee.map
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
@@ -107,14 +108,13 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         //등록 버튼 누르면 위도 경도를 MainMapActivity로 전달
         fab.setOnClickListener {
             if(!tv.text.equals("주소를 가져 올 수 없습니다.")) {
-                fab.setBackgroundColor(Color.DKGRAY)
                 //마커 추가
                 addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", "마커등록", tv.text.toString(), "웰시코기", "1", "0"))
                 finish() //등록 후 뒤로가기
             }
         }
     }
-    //마커 등록 함수
+    //마커 파이어베이스 등록 함수
     private fun addMarkerDB(mapModel: MapModel){
         mapref.push().setValue(mapModel)
     }
