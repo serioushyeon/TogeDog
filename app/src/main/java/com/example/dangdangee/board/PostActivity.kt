@@ -55,12 +55,12 @@ class PostActivity : AppCompatActivity() {
         binding.commentLV.adapter= commentAdapter
 
         getCommentData(key)
+
         binding.commentLV.setOnItemClickListener{
                 parent,view, position, id->
             //keyList에 있는 key 받아오기
             key = commentKeyList[position]
-            //Toast.makeText(this,key,Toast.LENGTH_LONG).show()
-            showDialog2()
+            showCDialog()
 
         }
 
@@ -108,7 +108,7 @@ class PostActivity : AppCompatActivity() {
 
     }
 
-    private fun showDialog2(){
+    private fun showCDialog(){
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
