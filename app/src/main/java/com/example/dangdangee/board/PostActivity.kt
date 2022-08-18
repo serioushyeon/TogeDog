@@ -58,10 +58,9 @@ class PostActivity : AppCompatActivity() {
 
         binding.commentLV.setOnItemClickListener{
                 parent,view, position, id->
-            //keyList에 있는 key 받아오기
+            //keyList에 있는 key 받아오rl
             key = commentKeyList[position]
             showCDialog()
-
         }
 
     }
@@ -79,10 +78,8 @@ class PostActivity : AppCompatActivity() {
                         commentDataList.add(item!!)
                         commentKeyList.add(dataModel.key.toString())
                     }
-
                     //어뎁터 동기화
                     commentAdapter.notifyDataSetChanged()
-
                 } catch (e: Exception) {
                     Log.d(TAG, "삭제완료")
                 }
@@ -109,17 +106,17 @@ class PostActivity : AppCompatActivity() {
     }
 
     private fun showCDialog(){
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("삭제하시겠습니까?")
-        val alertDialog = mBuilder.show()
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("삭제하시겠습니까?")
+            val alertDialog = mBuilder.show()
 
-        alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
-            FBRef.commentRef.child(key).removeValue()
-            Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-            finish()
-        }
+            alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
+                FBRef.commentRef.child(key).removeValue()
+                Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+                finish()
+            }
     }
 
     private fun showDialog(){
@@ -128,12 +125,12 @@ class PostActivity : AppCompatActivity() {
             .setView(mDialogView)
             .setTitle("게시글 수정/삭제")
         val alertDialog = mBuilder.show()
-        alertDialog.findViewById<Button>(R.id.editbtn)?.setOnClickListener{
+        alertDialog.findViewById<Button>(R.id.editbtn1)?.setOnClickListener{
             val intent = Intent(this,BoardEditActivity::class.java)
             intent.putExtra("key",key)
             startActivity(intent)
         }
-        alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener{
+        alertDialog.findViewById<Button>(R.id.deletebtn1)?.setOnClickListener{
             FBRef.boardRef.child(key).removeValue()
             finish()
         }
@@ -150,12 +147,7 @@ class PostActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 Glide.with(this)
                     .load(task.result)
-                    .into(imageViewFromFB)
-            }else{
-
-            }
-        })
-
+                    .into(imageViewFromFB) } else{ } })
     }
 
     private fun getBoardData(key: String){

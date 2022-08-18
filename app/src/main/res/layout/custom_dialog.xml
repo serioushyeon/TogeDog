@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <Button
-        android:id="@+id/editbtn"
+        android:id="@+id/editbtn1"
         android:text="수정"
         android:layout_width="match_parent"
         android:background="@drawable/background_radius"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"></Button>
     <Button
-        android:id="@+id/deletebtn"
+        android:id="@+id/deletebtn1"
         android:text="삭제"
         android:layout_width="match_parent"
         android:background="@drawable/background_radius"
