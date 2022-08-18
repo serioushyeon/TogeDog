@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="324dp"
+        android:layout_height="270dp"
         android:background="@drawable/login"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"></ImageView>
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -51,7 +51,7 @@
             android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -62,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.738"></ImageView>
+            app:layout_constraintVertical_bias="0.738" />
 
         <ImageView
             android:layout_width="30dp"
@@ -71,28 +71,42 @@
             android:layout_marginTop="68dp"
             android:src="@drawable/logo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:layout_weight="1"
-            android:text="같이 강아지를 찾아봐여"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:fontFamily="@font/main_font"
+            android:text="Let's Find a Dog"
+            android:textColor="@color/white"
             android:textSize="28sp"
-            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/main_font"
+            android:text="Together!"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
@@ -103,10 +117,12 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/background_login"
-            android:hint="  nickname"
+            android:fontFamily="@font/main_font"
+            android:hint="nickname"
+            android:paddingLeft="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></EditText>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/emailArea"
@@ -114,10 +130,12 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/background_login"
-            android:hint="  email"
+            android:fontFamily="@font/main_font"
+            android:hint="email"
+            android:paddingLeft="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nicknameArea"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/nicknameArea" />
 
         <EditText
             android:id="@+id/passwordArea1"
@@ -125,11 +143,13 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/background_login"
-            android:hint="  password"
+            android:fontFamily="@font/main_font"
+            android:hint="password"
             android:inputType="textPassword"
+            android:paddingLeft="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailArea"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/emailArea" />
 
         <EditText
             android:id="@+id/passwordArea2"
@@ -137,23 +157,26 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/background_login"
-            android:hint="  password check"
+            android:fontFamily="@font/main_font"
+            android:hint="password check"
             android:inputType="textPassword"
+            android:paddingLeft="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordArea1"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/passwordArea1" />
 
         <Button
             android:id="@+id/joinBtn"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_margin="20dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/background_radius"
-            android:text="회원가입하기"
-            android:textColor="#FFFFFF"
+            android:fontFamily="@font/main_font"
+            android:text="JOIN"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordArea2"></Button>
+            app:layout_constraintTop_toBottomOf="@+id/passwordArea2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

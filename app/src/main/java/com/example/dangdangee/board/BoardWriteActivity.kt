@@ -48,7 +48,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
             //파이어 베이스 storge에 이미지를 저장
             //게시글을 클릭했을떄, 게시글에 대한 정보 전달
-            //이미지 이름ㅇ르 key값으로 저장
+            //이미지 이름을 key값으로 저장
             val key = FBRef.boardRef.push().key.toString()
 
             //board

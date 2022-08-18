@@ -146,15 +146,15 @@ class PostActivity : AppCompatActivity() {
         // ImageView in your Activity
         val imageViewFromFB = binding.ivPostProfile
 
-        storageReference.downloadUrl.addOnCompleteListener({task ->
-            if(task.isSuccessful){
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
-            }else{
+            } else {
 
             }
-        })
+        }
 
     }
 

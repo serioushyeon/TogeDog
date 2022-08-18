@@ -73,7 +73,7 @@ class BoardEditActivity : AppCompatActivity() {
                     Log.d(ContentValues.TAG, dataSnapshot.toString())
 
                     binding.evTitle2.setText(dataModel?.title)
-                    binding.evWriter2.setText(dataModel?.uid)
+                    binding.evWriter2.text = dataModel?.uid
                     binding.evBreed2.setText(dataModel?.breed)
                     binding.evTime2.setText(dataModel?.lostday)
                     binding.evText2.setText(dataModel?.content)
@@ -84,28 +84,28 @@ class BoardEditActivity : AppCompatActivity() {
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
-
                 Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
             }
         }
         FBRef.boardRef.child(key).addValueEventListener(postListener)
     }
+
     private fun getImageData(key: String){
         // Reference to an image file in Cloud Storage
-        val storageReference = Firebase.storage.reference.child(key + ".png")
+        val storageReference = Firebase.storage.reference.child("$key.png")
 
         // ImageView in your Activity
         val imageViewFromFB = binding.ivProfile2
 
-        storageReference.downloadUrl.addOnCompleteListener({task ->
-            if(task.isSuccessful){
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
-            }else{
+            } else {
 
             }
-        })
+        }
 
     }
 

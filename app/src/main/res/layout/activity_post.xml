@@ -41,11 +41,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="24dp"
                         android:text="게시글 제목"
                         android:textColor="#000000"
                         android:textSize="22sp"
                         android:textStyle="bold"
+                        android:fontFamily="@font/main_font"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,9 +55,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="8dp"
                         android:text="작성자"
                         android:textSize="16sp"
+                        android:fontFamily="@font/main_font"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -65,9 +67,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:text="강아지 종"
                         android:textSize="18sp"
+                        android:fontFamily="@font/main_font"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -77,7 +80,7 @@
                         android:layout_height="30dp"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:background="#E1DADA"
                         app:layout_constraintStart_toEndOf="@+id/tv_breed"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
@@ -87,9 +90,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:text="실종 날짜"
                         android:textSize="18sp"
+                        android:fontFamily="@font/main_font"
                         app:layout_constraintStart_toEndOf="@+id/view"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -98,9 +102,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="48dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="32dp"
                         android:text="게시글 내용"
                         android:textSize="18sp"
+                        android:fontFamily="@font/main_font"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_breed" />
 
@@ -108,33 +115,32 @@
                         android:id="@+id/boardSettingIcon"
                         android:layout_width="20dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="249dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="172dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
                         android:src="@drawable/logo_main"
                         android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_title"
-                        app:layout_constraintTop_toTopOf="parent"></ImageView>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_realtime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
                         android:text="현재시간"
                         android:textSize="16sp"
+                        android:fontFamily="@font/main_font"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/boardSettingIcon" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <ListView
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
-                    android:layout_height="800dp"></ListView>
+                    android:layout_height="800dp" />
 
             </LinearLayout>
 
@@ -154,14 +160,17 @@
                 android:layout_width="320dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:paddingStart="10dp"
                 android:hint="댓글을 입력해주세요"
-
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:fontFamily="@font/main_font"/>
 
             <ImageView
                 android:id="@+id/commentBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
                 android:src="@drawable/send" />
 
 
