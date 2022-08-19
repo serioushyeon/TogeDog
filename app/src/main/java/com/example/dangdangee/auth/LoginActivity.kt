@@ -3,7 +3,9 @@ package com.example.dangdangee.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 
 import com.example.dangdangee.MainActivity
@@ -22,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // setContentView(R.layout.activity_login)
+
+        setStatusBarColor(R.color.main_color)
 
         auth = Firebase.auth
 
@@ -47,5 +51,15 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    private fun setStatusBarColor(color: Int) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 }

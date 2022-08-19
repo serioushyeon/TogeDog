@@ -41,8 +41,8 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
         val ctext = holder.itemView.context
-        holder.title.text=item.get(position).title
-        holder.writer.text=item.get(position).uid
+        holder.title.text = item[position].title
+        holder.writer.text = item[position].uid
 
         holder.itemView.setOnClickListener{
             onClick(ctext,position)

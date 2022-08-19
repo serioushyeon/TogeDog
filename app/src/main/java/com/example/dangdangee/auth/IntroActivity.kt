@@ -3,6 +3,8 @@ package com.example.dangdangee.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.dangdangee.R
 import com.example.dangdangee.databinding.ActivityIntroBinding
