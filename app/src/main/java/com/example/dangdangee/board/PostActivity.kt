@@ -77,6 +77,7 @@ class PostActivity : AppCompatActivity() {
                         val item = dataModel.getValue(CommentModel::class.java)
                         commentDataList.add(item!!)
                         commentKeyList.add(dataModel.key.toString())
+
                     }
                     //어뎁터 동기화
                     commentAdapter.notifyDataSetChanged()

@@ -7,6 +7,8 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.dangdangee.R
 
+import com.example.dangdangee.board.BoardModel
+
 
 class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapter() {
     override fun getCount(): Int {
@@ -23,6 +25,7 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
 
     //view를 가져와서 연결
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
         var view = convertView
         if (view == null) {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item, parent, false)
