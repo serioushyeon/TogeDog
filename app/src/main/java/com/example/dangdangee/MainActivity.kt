@@ -6,7 +6,6 @@ import com.example.dangdangee.board.HomeFragment
 import com.example.dangdangee.databinding.ActivityMainBinding
 import com.example.dangdangee.map.MainMapFragment
 
-import com.example.dangdangee.map.MarkerRegisterFragment
 import com.example.dangdangee.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.database.DatabaseReference
