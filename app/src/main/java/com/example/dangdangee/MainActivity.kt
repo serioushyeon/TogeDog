@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dangdangee.board.HomeFragment
 import com.example.dangdangee.databinding.ActivityMainBinding
 import com.example.dangdangee.map.MainMapFragment
+
 import com.example.dangdangee.map.MarkerRegisterFragment
 import com.example.dangdangee.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(){
     private val mapFragment: MainMapFragment by lazy { MainMapFragment() }
     private val homeFragment: HomeFragment by lazy { HomeFragment() }
     private val profileFragment: ProfileFragment by lazy { ProfileFragment() }
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

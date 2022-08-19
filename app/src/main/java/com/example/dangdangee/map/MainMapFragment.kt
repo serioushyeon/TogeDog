@@ -1,18 +1,21 @@
 package com.example.dangdangee.map
 
 import android.annotation.SuppressLint
-import android.graphics.Color.*
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.graphics.PointF
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.dangdangee.R
-import com.example.dangdangee.databinding.FragmentMainMapBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
@@ -20,27 +23,49 @@ import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
-import com.naver.maps.map.overlay.PathOverlay
 import com.naver.maps.map.util.FusedLocationSource
 
-
 class MainMapFragment : Fragment(), OnMapReadyCallback {
+    private lateinit var mapRef: DatabaseReference
     private lateinit var locationSource: FusedLocationSource //현재 위치 정보를 위한 것
     private lateinit var naverMap: NaverMap //지도
-    private var markers = ArrayList<Marker>() //마커를 담는 배열, 나중에는 데이터베이스에서 마커 정보 가져와야 할 듯
-    private val binding by lazy { FragmentMainMapBinding.inflate(layoutInflater) }
     private lateinit var auth: FirebaseAuth
+    private var markers = ArrayList<MapModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        mapRef = Firebase.database.getReference("Marker")
+        val markerListener = object : ChildEventListener {
+            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                val marker = dataSnapshot.getValue(MapModel::class.java)
+                if(marker!!.tag == "F") {
+                    addMarker(marker, dataSnapshot.key!!, naverMap)
+                }
+            }
+            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                Log.d(TAG, "onChildChanged: ${dataSnapshot.key}")
+                val marker = dataSnapshot.getValue(MapModel::class.java)
+                updateMarker(marker!!, dataSnapshot.key!!)
+            }
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.key!!)
+                removeMarker(dataSnapshot.key!!)
+            }
+            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.key!!)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException())
+            }
+        }
+        mapRef.addChildEventListener(markerListener)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        println("onCreateView")
         //맵을 띄울 프래그먼트 설정
         val fm = childFragmentManager
         val mapFragment = fm.findFragmentById(R.id.main_map_frame) as MapFragment?
@@ -48,37 +73,18 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
                 fm.beginTransaction().add(R.id.main_map_frame, it).commit()
             }
         mapFragment.getMapAsync(this)
-
         return inflater.inflate(R.layout.fragment_main_map, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("onViewCreated")
-        val path = PathOverlay()
-        view.findViewById<Button>(R.id.pathbtn).setOnClickListener {
-            if(path.map == null){
-                path.coords = listOf(
-                    LatLng(37.57152, 126.97714),
-                    LatLng(37.56607, 126.98268),
-                    LatLng(37.56445, 126.97707),
-                    LatLng(37.55855, 126.97822)
-                )
-                path.width = 30
-                path.outlineWidth = 0
-                path.patternImage = OverlayImage.fromResource(R.drawable.path_pattern)
-                path.patternInterval =
-                    resources.getDimensionPixelSize(R.dimen.overlay_pattern_interval)
-                path.color = rgb(63,121,255)
-                path.map = naverMap
-            }
-            else path.map = null
+        view.findViewById<Button>(R.id.registerbtn).setOnClickListener {
+            activity?.startActivity(Intent(activity, MarkerRegisterActivity::class.java))
         }
     }
 
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
-        println("onMapReady")
         this.naverMap = naverMap
         //현재 위치 사용 하기 위한 처리
         locationSource =
@@ -97,44 +103,56 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
         val locationOverlay = naverMap.locationOverlay //위치 오버레이
         locationOverlay.isVisible = true // 가시성 true
         locationOverlay.position = LatLng(37.5670135, 126.9783740) //오버레이 위치
-
-        //마커 추가
-        addMarker(LatLng(37.57152, 126.97714), "0", naverMap, "댕댕영")
-        addMarker(LatLng(37.56607, 126.98268), "1", naverMap, "댕댕일")
-        addMarker(LatLng(37.56445, 126.97707), "2", naverMap, "댕댕이")
-        addMarker(LatLng(37.55855, 126.97822), "3", naverMap, "댕댕삼")
     }
+
     //마커 & 정보창 등록 함수
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun addMarker(latlng : LatLng, tag : String, naverMap: NaverMap, caption: String){
+    private fun addMarker(mapModel: MapModel, mid: String, navermap : NaverMap) {
         val marker = Marker()
-        marker.tag = tag
-        marker.position = latlng
-        marker.map = naverMap
-        marker.icon = OverlayImage.fromResource(R.drawable.ic_baseline_pets_24) //아이콘 , 추후 이미지 받아와서 처리?
+        marker.position = LatLng(mapModel.lat, mapModel.lng)
+        marker.tag = mapModel.tag //최초 등록 or 경로 구분 태그
+        marker.captionText = mapModel.name //캡션, 동물 이름
+        marker.icon = OverlayImage.fromResource(R.drawable.ic_baseline_pets_24) //아이콘
+
         marker.width = Marker.SIZE_AUTO //자동 사이즈
         marker.height = Marker.SIZE_AUTO //자동사이즈
         marker.isIconPerspectiveEnabled = true //원근감
-        marker.captionText = caption //캡션
+
         marker.captionRequestedWidth = 200 //캡션 길이
         marker.captionMinZoom = 12.0 //캡션 보이는 범위
-        marker.anchor = PointF(0.5f, 0.5f)
 
-        //마커 등록 시험 & 누르면 bottomsheet로 정보 띄움
+        marker.anchor = PointF(0.5f, 0.5f) //마커 이미지가 선택 지점 중앙에 위치하도록
+
+        marker.map = navermap
+
+        //bottomsheet로 정보 띄움
         val fragmentManager = parentFragmentManager
         marker.onClickListener = Overlay.OnClickListener {
             val bottomSheet = MapBottomSheetFragment()
-            bottomSheet.name = marker.captionText
-            bottomSheet.address = "서울특별시"
-            bottomSheet.kind = "푸들"
+            bottomSheet.name = mapModel.name
+            bottomSheet.address = mapModel.address
+            bottomSheet.breed = mapModel.breed
             bottomSheet.img = resources.getDrawable(R.drawable.map_sample_dog, null)
+            bottomSheet.key = mapModel.key //수정 필요
             bottomSheet.show(fragmentManager, bottomSheet.tag)
             false
         }
-
-        //마커를 마커 배열에 추가
-        markers.add(marker)
-
+        mapModel.marker = marker
+        mapModel.mid = mid
+        markers.add(mapModel)
+    }
+    fun updateMarker(mapModel: MapModel, mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
+        }
+        addMarker(mapModel, mid, naverMap)
+    }
+    fun removeMarker(mid: String){
+        for(i in markers.indices) {
+            if(markers[i].mid == mid)
+                markers[i].marker?.map = null
+        }
     }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
