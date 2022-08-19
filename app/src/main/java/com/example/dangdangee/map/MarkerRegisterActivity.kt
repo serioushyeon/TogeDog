@@ -1,42 +1,39 @@
 package com.example.dangdangee.map
 
-import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.PointF
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.dangdangee.R
-import com.example.dangdangee.databinding.FragmentMarkerRegisterBinding
+import com.example.dangdangee.databinding.ActivityMarkerRegisterBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
-import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import java.io.IOException
 import java.util.*
 
-class MarkerRegisterFragment : Fragment(), OnMapReadyCallback {
-    private lateinit var mapView: MapView
+class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
+    private lateinit var mapref: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
-    private val binding by lazy { FragmentMarkerRegisterBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityMarkerRegisterBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(binding.root)
+        mapref = Firebase.database.getReference("Marker")
         //현재 위치 사용 처리
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
-        //맵을 띄울 프래그먼트 설정
-        val fm = childFragmentManager
+        val fm = supportFragmentManager
         val mapFragment = fm.findFragmentById(R.id.register_map_view) as MapFragment?
             ?: MapFragment.newInstance().also {
                 fm.beginTransaction().add(R.id.register_map_view, it).commit()
@@ -44,17 +41,9 @@ class MarkerRegisterFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_marker_register, container, false)
-    }
-
     //위도 경도 주소로 변환하여 보여줌
     private fun getAddress(lat: Double, lng: Double): String {
-        val geoCoder = Geocoder(context, Locale.KOREA)
+        val geoCoder = Geocoder(applicationContext, Locale.KOREA)
         val address: ArrayList<Address>
         var addressResult = "주소를 가져 올 수 없습니다."
         try {
@@ -75,7 +64,6 @@ class MarkerRegisterFragment : Fragment(), OnMapReadyCallback {
 
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
-        val resultIntent = Intent()
         val tv = binding.registerTvLocation //주소 표시
         val fab = binding.registerFloatingbtn //추가 플로팅 버튼
         this.naverMap = naverMap
@@ -90,11 +78,6 @@ class MarkerRegisterFragment : Fragment(), OnMapReadyCallback {
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.NoFollow //위치 변해도 지도 안움직임
         naverMap.uiSettings.isLocationButtonEnabled = true //현재 위치 버튼 활성화
-
-        //MainMapActivity에 디폴트로 돌려줄 값
-        resultIntent.putExtra("latitude", 0.0) //등록안하면 디폴트로 0.0
-        resultIntent.putExtra("longitude", 0.0) //등록안하면 디폴트로 0.0
-        //setResult(AppCompatActivity.RESULT_OK, resultIntent) //디폴트
 
         //이동 중이면 표시, 확인 버튼 비활성화
         naverMap.addOnCameraChangeListener { _, _ ->
@@ -122,30 +105,18 @@ class MarkerRegisterFragment : Fragment(), OnMapReadyCallback {
             }//이동 끝나면 등록 버튼 비활성화
         }
 
-
-
         //등록 버튼 누르면 위도 경도를 MainMapActivity로 전달
         fab.setOnClickListener {
-            if (!tv.text.equals("주소를 가져 올 수 없습니다.")) {
-                val cameraposition = naverMap.cameraPosition
-                resultIntent.putExtra("latitude", cameraposition.target.latitude)
-                resultIntent.putExtra("longitude", cameraposition.target.longitude,)
-                //setResult(AppCompatActivity.RESULT_OK, resultIntent)
-                Marker().apply {
-                    position =
-                        LatLng(cameraposition.target.latitude, cameraposition.target.longitude)
-                    map = naverMap
-                    icon = OverlayImage.fromResource(R.drawable.ic_baseline_pets_24) //아이콘
-                    width = Marker.SIZE_AUTO //자동 사이즈
-                    height = Marker.SIZE_AUTO //자동사이즈
-                    anchor = PointF(0.5f, 0.5f)
-                    isIconPerspectiveEnabled = true //원근감
-                    captionRequestedWidth = 200 //캡션 길이
-                    captionMinZoom = 12.0 //캡션 보이는 범위
-                } //마커 위치 보기위한 것 추후 삭제
-                //finish() //등록 후 finish
+            if(!tv.text.equals("주소를 가져 올 수 없습니다.")) {
+                //마커 추가
+                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", "마커등록", tv.text.toString(), "웰시코기", "1", "0"))
+                finish() //등록 후 뒤로가기
             }
         }
+    }
+    //마커 파이어베이스 등록 함수
+    private fun addMarkerDB(mapModel: MapModel){
+        mapref.push().setValue(mapModel)
     }
 
     companion object {

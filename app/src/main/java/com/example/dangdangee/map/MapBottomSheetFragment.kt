@@ -1,5 +1,6 @@
 package com.example.dangdangee.map
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
@@ -10,17 +11,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.example.dangdangee.R
-import com.example.dangdangee.databinding.FragmentMapBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MapBottomSheetFragment : BottomSheetDialogFragment() {
 
-    internal lateinit var name : String
-    internal lateinit var address : String
-    internal lateinit var kind : String
-    internal lateinit var img : Drawable
-    private val binding by lazy { FragmentMapBottomSheetBinding.inflate(layoutInflater) }
+    lateinit var name : String
+    lateinit var address : String
+    lateinit var breed : String
+    lateinit var img : Drawable
+    lateinit var key : String
+    var flag = true //true면 경로 보기 버튼 뜸, false면 경로 보기 버튼 안 뜸(이미 경로 액티비티일 때)
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,19 +35,25 @@ class MapBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val imgview = view.findViewById<ImageView>(R.id.info_image_pet)
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.info_to_post).setOnClickListener {
-            println("post")
-            //getSupportFragmentManager().beginTransaction().replace(컨테이너, 게시판프래그먼트).commit();
+            //getSupportFragmentManager().beginTransaction().replace(컨테이너, 게시글프래그먼트).commit();
         }
-        view.findViewById<Button>(R.id.info_to_route_map).setOnClickListener {
-            println("path")
-            //getSupportFragmentManager().beginTransaction().replace(컨테이너, 경로프래그먼트).commit();
+        if(flag){
+            view.findViewById<Button>(R.id.info_to_route_map).setOnClickListener{
+                    val intent = Intent(activity, PathActivity::class.java)
+                    intent.putExtra("key", key)
+                    activity?.startActivity(intent)
+                }
+
         }
+        else
+            view.findViewById<Button>(R.id.info_to_route_map).isVisible = false
+
         view.findViewById<TextView>(R.id.info_address).text = address
         view.findViewById<TextView>(R.id.info_name).text = name
-        view.findViewById<TextView>(R.id.info_kind).text = kind
-        val imgview = view.findViewById<ImageView>(R.id.info_image_pet)
+        view.findViewById<TextView>(R.id.info_kind).text = breed
         imgview.setImageDrawable(img)
         imgview.background = ShapeDrawable(OvalShape())
         imgview.clipToOutline = true

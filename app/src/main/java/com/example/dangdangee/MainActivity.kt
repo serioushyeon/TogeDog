@@ -4,13 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dangdangee.databinding.ActivityMainBinding
 import com.example.dangdangee.map.MainMapFragment
-import com.example.dangdangee.map.MarkerRegisterFragment
+import com.example.dangdangee.map.MapModel
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(){
     private var mapFragment: MainMapFragment = MainMapFragment()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
