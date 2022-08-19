@@ -21,6 +21,7 @@
         android:gravity="center"
         android:text="@string/text_move_map_set_location"
         android:textSize="12sp"
+        android:fontFamily="@font/main_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +38,8 @@
         app:layout_constraintBottom_toTopOf="@+id/register_floatingbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="서울특별시 강남구" />
+        tools:text="서울특별시 강남구"
+        android:fontFamily="@font/main_font"/>
 
     <ImageView
         android:id="@+id/register_center_marker"
