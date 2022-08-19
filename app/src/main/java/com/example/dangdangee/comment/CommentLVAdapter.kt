@@ -31,10 +31,12 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item, parent, false)
         }
         val title = view?.findViewById<TextView>(R.id.titleArea)
+        val user = view?.findViewById<TextView>(R.id.userArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
         //val delete = view?.findViewById<ImageView>(R.id.commentSettingIcon)
         val content = commentList[position]
         title!!.text = content.commentTitle
+        user!!.text = content.commentUser
         time!!.text = content.commentCreatedTime
         //delete!!.setImageResource(content.commentDelete)
         return view!!

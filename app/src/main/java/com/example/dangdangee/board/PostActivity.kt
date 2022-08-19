@@ -94,17 +94,7 @@ class PostActivity : AppCompatActivity() {
 
     }
 
-    fun insertComment(key: String){
-        FBRef.commentRef
-            .child(key)
-            .push()
-            .setValue(CommentModel(binding.commentArea.text.toString())
-                                    ,FBAuth.getTime()
-                )
-        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
-        binding.commentArea.setText("")
 
-    }
 
     private fun showCDialog(){
             val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
@@ -184,6 +174,19 @@ class PostActivity : AppCompatActivity() {
             }
         }
         FBRef.boardRef.child(key).addValueEventListener(postListener)
+    }
+    fun insertComment(key: String){
+        val comment = binding.commentArea.text.toString()
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()
+            )
+            )
+
+        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
+        binding.commentArea.setText("")
+
     }
 
 }
