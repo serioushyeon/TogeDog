@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "723459413813",
-    "project_id": "dangdange",
-    "storage_bucket": "dangdange.appspot.com"
+    "project_number": "681124788910",
+    "firebase_url": "https://dangdangeee-1941a-default-rtdb.firebaseio.com",
+    "project_id": "dangdangeee-1941a",
+    "storage_bucket": "dangdangeee-1941a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:723459413813:android:565f3f844fc0b13d70de7c",
+        "mobilesdk_app_id": "1:681124788910:android:def158c12abb70d6a0cb3f",
         "android_client_info": {
           "package_name": "com.example.dangdangee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "723459413813-gkid754j2vmgmtdcs74j13ma2ci1drpn.apps.googleusercontent.com",
+          "client_id": "681124788910-inp1gqgrgu4sdc485tlr4iasu9qhm1sc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYVEtMfpxXQxShq07XCi7IqYa3PzO332k"
+          "current_key": "AIzaSyAlhuOaP3r9RIBY2mw2I-NNCYS4utMNQIQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "723459413813-gkid754j2vmgmtdcs74j13ma2ci1drpn.apps.googleusercontent.com",
+              "client_id": "681124788910-inp1gqgrgu4sdc485tlr4iasu9qhm1sc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
