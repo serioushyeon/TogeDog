@@ -46,6 +46,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".map.MarkerRegisterActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".map.PathActivity"
+            android:exported="false"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
