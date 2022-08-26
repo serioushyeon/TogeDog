@@ -1,34 +1,48 @@
 package com.example.dangdangee.map
 
 
+import android.content.ContentValues
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBAuth
+import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.board.BoardModel
 import com.example.dangdangee.databinding.ActivityMarkerRegisterBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 
 class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
+    private lateinit var key: String
     private lateinit var mapref: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
+
     private val binding by lazy { ActivityMarkerRegisterBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         mapref = Firebase.database.getReference("Marker")
+
         //현재 위치 사용 처리
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
@@ -64,8 +78,11 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
 
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
+        key = intent.getStringExtra("key").toString()
+        //getBoardData(key,Mtitle,Mbreed)
         val tv = binding.registerTvLocation //주소 표시
         val fab = binding.registerFloatingbtn //추가 플로팅 버튼
+
         this.naverMap = naverMap
 
         //지도 영역 처리
@@ -109,17 +126,38 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         fab.setOnClickListener {
             if(!tv.text.equals("주소를 가져 올 수 없습니다.")) {
                 //마커 추가
-                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", "마커등록", tv.text.toString(), "웰시코기", "1", "0"))
+                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", "마커등록", tv.text.toString(), "웰시코기", key, FBAuth.getTime()))
                 finish() //등록 후 뒤로가기
             }
         }
     }
     //마커 파이어베이스 등록 함수
     private fun addMarkerDB(mapModel: MapModel){
-        mapref.push().setValue(mapModel)
+        key = intent.getStringExtra("key").toString()
+        mapref.child(key).push().setValue(mapModel)
     }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+    }
+
+
+    private fun getBoardData(key: String, title: String, breed: String){
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                try {
+                    val dataModel = dataSnapshot.getValue(BoardModel::class.java)
+
+                    Log.d(ContentValues.TAG, dataSnapshot.toString())
+                }catch (e: Exception){
+                    Log.w(ContentValues.TAG, "삭제완료")
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
     }
 }

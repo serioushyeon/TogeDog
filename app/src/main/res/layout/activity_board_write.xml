@@ -116,6 +116,14 @@
                     android:minHeight="48dp"
                     android:textColorHint="@color/editText_color"
                     android:fontFamily="@font/main_font"/>
+                <Button
+                    android:id="@+id/pingping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/main_color"
+                    android:fontFamily="@font/main_font"
+                    android:textColor="@color/white"
+                    android:text="위치 등록" />
             </LinearLayout>
 
             <Button

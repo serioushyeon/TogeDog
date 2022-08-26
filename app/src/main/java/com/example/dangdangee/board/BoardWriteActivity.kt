@@ -15,10 +15,11 @@ import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityBoardWriteBinding
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
-import java.io.File
+
 
 class BoardWriteActivity : AppCompatActivity() {
 
@@ -35,7 +36,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_write)
 
-        binding.btnConfirm.setOnClickListener {
+        binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
             val uid = FBAuth.getUid()
             val breed = binding.evBreed.text.toString()
@@ -58,17 +59,19 @@ class BoardWriteActivity : AppCompatActivity() {
                 .child(key)
                 .setValue(BoardModel(title,uid,breed,lostday,content,time))
 
-            Toast.makeText(this,"게시글 입력 완료",Toast.LENGTH_SHORT).show()
             if(isImageUpload) {
 
                 imageUpload(key)
 
             }
             finish()
-
+            val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("key",key)
+            startActivity(intent)
+            //finish()
         }
 
-        binding.ivProfile.setOnClickListener {
+              binding.ivProfile.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
             isImageUpload = true
