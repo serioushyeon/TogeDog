@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.dangdangee.R
+import com.example.dangdangee.board.BoardWriteActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -79,7 +80,8 @@ class MainMapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.registerbtn).setOnClickListener {
-            activity?.startActivity(Intent(activity, MarkerRegisterActivity::class.java))
+            //activity?.startActivity(Intent(activity, MarkerRegisterActivity::class.java))
+            activity?.startActivity(Intent(activity, BoardWriteActivity::class.java))
         }
     }
 
