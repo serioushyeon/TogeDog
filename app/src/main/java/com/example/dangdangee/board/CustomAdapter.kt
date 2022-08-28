@@ -42,7 +42,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         getData()
         val ctext = holder.itemView.context
         holder.title.text = item[position].title
-        holder.writer.text = item[position].uid
+        holder.writer.text = "작성자"
 
         holder.itemView.setOnClickListener{
             onClick(ctext,position)
