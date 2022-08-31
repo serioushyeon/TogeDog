@@ -126,7 +126,9 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         fab.setOnClickListener {
             if(!tv.text.equals("주소를 가져 올 수 없습니다.")) {
                 //마커 추가
-                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", "마커등록", tv.text.toString(), "웰시코기", key, FBAuth.getTime()))
+                val subtitle = binding.subtitle.text.toString()
+                val breed2 = binding.breed2.text.toString()
+                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", subtitle, tv.text.toString(), breed2, key, FBAuth.getTime()))
                 finish() //등록 후 뒤로가기
             }
         }

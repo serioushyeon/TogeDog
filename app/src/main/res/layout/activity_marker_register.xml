@@ -14,7 +14,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.963" />
+        app:layout_constraintVertical_bias="0.963" >
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="188dp"
@@ -43,6 +45,23 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="서울특별시 강남구"
         android:fontFamily="@font/main_font"/>
+
+    <EditText
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="subtitle" />
+
+    <EditText
+        android:id="@+id/breed2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="breed"
+        app:layout_constraintStart_toEndOf="@+id/subtitle" />
 
     <ImageView
         android:id="@+id/register_center_marker"
