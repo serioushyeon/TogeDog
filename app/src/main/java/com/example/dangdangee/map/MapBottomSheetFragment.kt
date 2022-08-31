@@ -55,7 +55,6 @@ class MapBottomSheetFragment : BottomSheetDialogFragment() {
             val intent = Intent(context, PostActivity::class.java)
             intent.putExtra("key",key)
             startActivity(intent)
-            //getSupportFragmentManager().beginTransaction().replace(컨테이너, 게시글프래그먼트).commit();
         }
         if(flag){
             view.findViewById<Button>(R.id.info_to_route_map).setOnClickListener{
