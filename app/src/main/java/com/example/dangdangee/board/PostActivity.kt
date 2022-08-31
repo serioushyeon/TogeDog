@@ -29,6 +29,7 @@ class PostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPostBinding
     private lateinit var key: String
+    private lateinit var commentkey: String
     private val commentDataList = mutableListOf<CommentModel>()
     private val commentKeyList = mutableListOf<String>()
     private lateinit var  commentAdapter : CommentLVAdapter
@@ -59,7 +60,7 @@ class PostActivity : AppCompatActivity() {
         binding.commentLV.setOnItemClickListener{
                 parent,view, position, id->
             //keyList에 있는 key 받아오rl
-            key = commentKeyList[position]
+            commentkey = commentKeyList[position]
             showCDialog()
         }
 
@@ -104,7 +105,7 @@ class PostActivity : AppCompatActivity() {
             val alertDialog = mBuilder.show()
 
             alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
-                FBRef.commentRef.child(key).removeValue()
+                FBRef.commentRef.child(key).child(commentkey).removeValue()
                 Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
                 finish()
             }

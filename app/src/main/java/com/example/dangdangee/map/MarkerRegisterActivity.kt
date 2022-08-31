@@ -134,7 +134,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     //마커 파이어베이스 등록 함수
     private fun addMarkerDB(mapModel: MapModel){
         key = intent.getStringExtra("key").toString()
-        mapref.child(key).push().setValue(mapModel)
+        mapref.push().setValue(mapModel)
     }
 
     companion object {
