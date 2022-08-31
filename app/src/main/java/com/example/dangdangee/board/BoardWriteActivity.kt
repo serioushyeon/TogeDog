@@ -9,18 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityBoardWriteBinding
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
-import java.io.File
+
 
 class BoardWriteActivity : AppCompatActivity() {
 
@@ -37,9 +36,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_write)
 
-        setStatusBarColor(R.color.main_color)
-
-        binding.btnConfirm.setOnClickListener {
+        binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
             val uid = FBAuth.getUid()
             val breed = binding.evBreed.text.toString()
@@ -62,14 +59,16 @@ class BoardWriteActivity : AppCompatActivity() {
                 .child(key)
                 .setValue(BoardModel(title,uid,breed,lostday,content,time))
 
-            Toast.makeText(this,"게시글 입력 완료",Toast.LENGTH_SHORT).show()
             if(isImageUpload) {
 
                 imageUpload(key)
 
             }
             finish()
-
+            val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("key",key)
+            startActivity(intent)
+            //finish()
         }
 
         binding.ivProfile.setOnClickListener {
@@ -110,15 +109,5 @@ class BoardWriteActivity : AppCompatActivity() {
         if(resultCode == RESULT_OK && requestCode == 100){
             binding.ivProfile.setImageURI(data?.data)
         }
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 }

@@ -46,7 +46,8 @@
             android:gravity="left"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/commentSettingIcon"
-            app:layout_constraintTop_toBottomOf="@+id/userArea" />
+            app:layout_constraintTop_toBottomOf="@+id/userArea"
+            tools:ignore="RtlHardcoded" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -54,7 +55,7 @@
         android:id="@+id/timeArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/main_font"
         android:text="time"
         android:textSize="10sp"

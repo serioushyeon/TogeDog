@@ -59,13 +59,12 @@ class PostActivity : AppCompatActivity() {
         binding.commentLV.adapter= commentAdapter
 
         getCommentData(key)
+
         binding.commentLV.setOnItemClickListener{
                 parent,view, position, id->
-            //keyList에 있는 key 받아오기
+            //keyList에 있는 key 받아오rl
             key = commentKeyList[position]
-            //Toast.makeText(this,key,Toast.LENGTH_LONG).show()
-            showDialog2()
-
+            showCDialog()
         }
 
     }
@@ -82,11 +81,10 @@ class PostActivity : AppCompatActivity() {
                         val item = dataModel.getValue(CommentModel::class.java)
                         commentDataList.add(item!!)
                         commentKeyList.add(dataModel.key.toString())
-                    }
 
+                    }
                     //어뎁터 동기화
                     commentAdapter.notifyDataSetChanged()
-
                 } catch (e: Exception) {
                     Log.d(TAG, "삭제완료")
                 }
@@ -100,30 +98,20 @@ class PostActivity : AppCompatActivity() {
 
     }
 
-    fun insertComment(key: String){
-        FBRef.commentRef
-            .child(key)
-            .push()
-            .setValue(CommentModel(binding.commentArea.text.toString())
-                                    ,FBAuth.getTime()
-                )
-        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
-        binding.commentArea.setText("")
 
-    }
 
-    private fun showDialog2(){
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("삭제하시겠습니까?")
-        val alertDialog = mBuilder.show()
+    private fun showCDialog(){
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("삭제하시겠습니까?")
+            val alertDialog = mBuilder.show()
 
-        alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
-            FBRef.commentRef.child(key).removeValue()
-            Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-            finish()
-        }
+            alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
+                FBRef.commentRef.child(key).removeValue()
+                Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+                finish()
+            }
     }
 
     private fun showDialog(){
@@ -150,16 +138,11 @@ class PostActivity : AppCompatActivity() {
         // ImageView in your Activity
         val imageViewFromFB = binding.ivPostProfile
 
-        storageReference.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+        storageReference.downloadUrl.addOnCompleteListener({task ->
+            if(task.isSuccessful){
                 Glide.with(this)
                     .load(task.result)
-                    .into(imageViewFromFB)
-            } else {
-
-            }
-        }
-
+                    .into(imageViewFromFB) } else{ } })
     }
 
     private fun getBoardData(key: String){
@@ -195,6 +178,19 @@ class PostActivity : AppCompatActivity() {
             }
         }
         FBRef.boardRef.child(key).addValueEventListener(postListener)
+    }
+    fun insertComment(key: String){
+        val comment = binding.commentArea.text.toString()
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()
+            )
+            )
+
+        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
+        binding.commentArea.setText("")
+
     }
 
     private fun setStatusBarColor(color: Int) {
