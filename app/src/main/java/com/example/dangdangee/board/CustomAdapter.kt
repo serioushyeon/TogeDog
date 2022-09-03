@@ -41,9 +41,14 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
         val ctext = holder.itemView.context
+       /* val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
+        storageReference.downloadUrl.addOnCompleteListener({task ->
+            if(task.isSuccessful){
+                Glide.with(holder.itemView)
+                    .load(task.result)
+                    .into(holder.dogimage) } else{ } })*/
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
-
         holder.itemView.setOnClickListener{
             onClick(ctext,position)
         }
@@ -54,6 +59,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.rv_title)
         val writer = itemView.findViewById<TextView>(R.id.rv_writer)
+        val dogimage = itemView.findViewById<ImageView>(R.id.rv_dogProfile)
     }
 
 

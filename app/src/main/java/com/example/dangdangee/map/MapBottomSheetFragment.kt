@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.board.BoardModel
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class MapBottomSheetFragment : BottomSheetDialogFragment() {
     private val boardKeyList = arrayListOf<String>()
@@ -70,25 +72,19 @@ class MapBottomSheetFragment : BottomSheetDialogFragment() {
         view.findViewById<TextView>(R.id.info_address).text = address
         view.findViewById<TextView>(R.id.info_name).text = name
         view.findViewById<TextView>(R.id.info_kind).text = breed
-        imgview.setImageDrawable(img)
+        val storageReference = Firebase.storage.reference.child(key + ".png")
+
+        // ImageView in your Activity
+        val imageViewFromFB = view.findViewById<ImageView>(R.id.info_image_pet)
+
+        storageReference.downloadUrl.addOnCompleteListener({task ->
+            if(task.isSuccessful){
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB) } else{ } })
+
         imgview.background = ShapeDrawable(OvalShape())
         imgview.clipToOutline = true
     }
-    fun getData(){
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for(dataModel in dataSnapshot.children){
-                    val item = dataModel.getValue(BoardModel::class.java)
-                    boardDataList.add(item!!)
-                    boardKeyList.add(dataModel.key.toString())
-                }
-                boardKeyList.reverse()
-                boardDataList.reverse()
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        FBRef.boardRef.addValueEventListener(postListener)
-    }
+
 }
