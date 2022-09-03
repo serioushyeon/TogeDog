@@ -14,7 +14,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.963" />
+        app:layout_constraintVertical_bias="0.963" >
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="188dp"
@@ -35,7 +37,7 @@
         android:layout_height="73dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="112dp"
-        android:background="@color/white"
+        android:background="@drawable/background_login_btn"
         android:gravity="center"
         android:paddingHorizontal="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +45,32 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="서울특별시 강남구"
         android:fontFamily="@font/main_font"/>
+
+    <EditText
+        android:id="@+id/subtitle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/background_login"
+        android:ems="10"
+        android:hint="subtitle"
+        android:inputType="textPersonName"
+        android:minHeight="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/breed2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/background_login"
+        android:ems="10"
+        android:hint="breed"
+        android:inputType="textPersonName"
+        android:minHeight="32dp"
+        app:layout_constraintStart_toEndOf="@+id/subtitle"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/register_center_marker"
