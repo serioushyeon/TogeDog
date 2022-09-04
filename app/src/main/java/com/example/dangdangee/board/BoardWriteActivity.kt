@@ -66,6 +66,7 @@ class BoardWriteActivity : AppCompatActivity() {
             }
             finish()
             val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("tag", "F") //최초 등록 태그
             intent.putExtra("key",key)
             startActivity(intent)
             //finish()

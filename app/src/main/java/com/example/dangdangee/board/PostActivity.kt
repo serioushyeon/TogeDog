@@ -17,12 +17,15 @@ import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.auth.JoinActivity
 import com.example.dangdangee.comment.CommentLVAdapter
 import com.example.dangdangee.comment.CommentModel
 import com.example.dangdangee.databinding.ActivityPostBinding
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.lang.Exception
@@ -31,6 +34,7 @@ class PostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPostBinding
     private lateinit var key: String
+    private lateinit var mid: String
     private lateinit var commentkey: String
     private val commentDataList = mutableListOf<CommentModel>()
     private val commentKeyList = mutableListOf<String>()
@@ -66,6 +70,13 @@ class PostActivity : AppCompatActivity() {
             //keyList에 있는 key 받아오rl
             commentkey = commentKeyList[position]
             showCDialog()
+        }
+
+        binding.btnPathRegister.setOnClickListener{
+            val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("key",key)
+            intent.putExtra("tag", "P")
+            startActivity(intent)
         }
 
     }
@@ -127,6 +138,11 @@ class PostActivity : AppCompatActivity() {
             startActivity(intent)
         }
         alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener{
+            var mapRef = Firebase.database.getReference("Marker")
+            FBRef.boardRef.child(key).child("mid").get().addOnSuccessListener {
+                mid = it.value.toString()
+                mapRef.child(mid).removeValue()
+            } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
             finish()
         }
