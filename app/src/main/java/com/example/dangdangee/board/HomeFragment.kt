@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.dangdangee.Utils.FBRef

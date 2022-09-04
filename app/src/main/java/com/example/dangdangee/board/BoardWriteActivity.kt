@@ -71,7 +71,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //finish()
         }
 
-              binding.ivProfile.setOnClickListener {
+        binding.ivProfile.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
             isImageUpload = true

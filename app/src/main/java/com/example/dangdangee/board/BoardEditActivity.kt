@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.dangdangee.MainActivity
@@ -30,6 +32,7 @@ class BoardEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_edit)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_edit)
+        setStatusBarColor(R.color.main_color)
 
         key = intent.getStringExtra("key").toString()
         getBoardData(key)
@@ -109,7 +112,13 @@ class BoardEditActivity : AppCompatActivity() {
 
     }
 
+    private fun setStatusBarColor(color: Int) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this, color))
+    }
 }

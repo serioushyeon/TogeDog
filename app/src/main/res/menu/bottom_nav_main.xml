@@ -4,15 +4,15 @@
         android:id="@+id/action_home"
         android:icon="@drawable/logo"
         android:enabled="true"
-        android:title="home"></item>
+        android:title="home" />
     <item
         android:id="@+id/action_map"
         android:icon="@drawable/logo"
         android:enabled="true"
-        android:title="map"></item>
+        android:title="map" />
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/logo"
         android:enabled="true"
-        android:title="profile"></item>
+        android:title="profile" />
 </menu>

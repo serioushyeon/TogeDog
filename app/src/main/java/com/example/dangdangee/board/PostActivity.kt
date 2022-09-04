@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -38,6 +40,8 @@ class PostActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
+        setStatusBarColor(R.color.main_color)
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_post)
         key = intent.getStringExtra("key").toString()
 
@@ -188,6 +192,16 @@ class PostActivity : AppCompatActivity() {
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
         binding.commentArea.setText("")
 
+    }
+
+    private fun setStatusBarColor(color: Int) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 
 }
