@@ -37,7 +37,7 @@ class BoardWriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_write)
-        setStatusBarColor(R.color.main_color)
+
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
             val uid = FBAuth.getUid()
@@ -73,7 +73,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //finish()
         }
 
-              binding.ivProfile.setOnClickListener {
+        binding.ivProfile.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
             isImageUpload = true
@@ -111,15 +111,5 @@ class BoardWriteActivity : AppCompatActivity() {
         if(resultCode == RESULT_OK && requestCode == 100){
             binding.ivProfile.setImageURI(data?.data)
         }
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 }

@@ -68,7 +68,7 @@ class PostActivity : AppCompatActivity() {
 
         binding.commentLV.setOnItemClickListener{
                 parent,view, position, id->
-            //keyList에 있는 key 받아오rl
+            //keyList에 있는 key 받아오기
             commentkey = commentKeyList[position]
             showCDialog()
         }

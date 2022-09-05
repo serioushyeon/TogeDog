@@ -2,32 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_map_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".map.MainMapFragment"
-    android:id="@+id/main_map_container">
-
-    <Button
-        android:id="@+id/registerbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_color"
-        android:fontFamily="@font/main_font"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/main_map_frame"
-        app:layout_constraintEnd_toEndOf="@+id/pathbtn"
-        app:layout_constraintStart_toStartOf="@+id/pathbtn" />
-
-    <Button
-        android:id="@+id/pathbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/path"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/main_color"
-        android:fontFamily="@font/main_font"/>
+    tools:context=".map.MainMapFragment">
 
     <FrameLayout
         android:id="@+id/main_map_frame"
@@ -35,11 +13,40 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/registerbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/main_color"
+            android:fontFamily="@font/main_font"
+            android:text="@string/register"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/pathbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_color"
+            android:fontFamily="@font/main_font"
+            android:text="@string/path"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
