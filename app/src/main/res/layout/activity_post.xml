@@ -57,6 +57,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:text="작성자"
+                        android:inputType="textPersonName"
                         android:textSize="16sp"
                         android:fontFamily="@font/main_font"
                         app:layout_constraintStart_toStartOf="parent"
