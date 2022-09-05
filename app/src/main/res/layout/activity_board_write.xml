@@ -123,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="위치 등록"
+                android:text="OK"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/main_color"
                 android:fontFamily="@font/main_font"/>
