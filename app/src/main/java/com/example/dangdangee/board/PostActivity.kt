@@ -18,11 +18,15 @@ import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.comment.CommentLVAdapter
 import com.example.dangdangee.comment.CommentModel
 import com.example.dangdangee.databinding.ActivityPostBinding
+import com.example.dangdangee.map.MapModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import io.grpc.Context.key
 import java.lang.Exception
 
 class PostActivity : AppCompatActivity() {
@@ -33,6 +37,7 @@ class PostActivity : AppCompatActivity() {
     private val commentDataList = mutableListOf<CommentModel>()
     private val commentKeyList = mutableListOf<String>()
     private lateinit var  commentAdapter : CommentLVAdapter
+    private lateinit var mapRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -104,6 +109,8 @@ class PostActivity : AppCompatActivity() {
                 .setTitle("삭제하시겠습니까?")
             val alertDialog = mBuilder.show()
 
+            mapRef = Firebase.database.getReference("Marker")
+
             alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
                 FBRef.commentRef.child(key).child(commentkey).removeValue()
                 Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
@@ -124,6 +131,7 @@ class PostActivity : AppCompatActivity() {
         }
         alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener{
             FBRef.boardRef.child(key).removeValue()
+
             finish()
         }
 0    }

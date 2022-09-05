@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.FragmentHomeBinding
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class HomeFragment : Fragment() {
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
             getData()
+
             layoutManager = GridLayoutManager(requireContext(),2)
             setHasFixedSize(true)
             customAdapter = CustomAdapter(boardDataList)
@@ -41,8 +44,8 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
-    }
 
+    }
 
 
     private fun getData(){

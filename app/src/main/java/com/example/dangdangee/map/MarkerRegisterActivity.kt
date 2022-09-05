@@ -142,24 +142,4 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
-
-
-    private fun getBoardData(key: String, title: String, breed: String){
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                try {
-                    val dataModel = dataSnapshot.getValue(BoardModel::class.java)
-
-                    Log.d(ContentValues.TAG, dataSnapshot.toString())
-                }catch (e: Exception){
-                    Log.w(ContentValues.TAG, "삭제완료")
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-
-                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        FBRef.boardRef.child(key).addValueEventListener(postListener)
-    }
 }
