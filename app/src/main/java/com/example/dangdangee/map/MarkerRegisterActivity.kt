@@ -141,8 +141,6 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         key = intent.getStringExtra("key").toString()
         mid = mapref.push().key.toString() //마커 등록하면서 키값 알아내기
         mapref.child(mid).setValue(mapModel)
-
-
     }
 
     companion object {

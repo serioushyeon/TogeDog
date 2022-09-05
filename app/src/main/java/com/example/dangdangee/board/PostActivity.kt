@@ -113,17 +113,17 @@ class PostActivity : AppCompatActivity() {
 
 
     private fun showCDialog(){
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-                .setTitle("삭제하시겠습니까?")
-            val alertDialog = mBuilder.show()
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("삭제하시겠습니까?")
+        val alertDialog = mBuilder.show()
 
-            alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
-                FBRef.commentRef.child(key).child(commentkey).removeValue()
-                Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-                finish()
-            }
+        alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
+            FBRef.commentRef.child(key).child(commentkey).removeValue()
+            Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     private fun showDialog(){
@@ -146,7 +146,7 @@ class PostActivity : AppCompatActivity() {
             FBRef.boardRef.child(key).removeValue()
             finish()
         }
-0    }
+        0    }
 
     private fun getImageData(key: String){
         // Reference to an image file in Cloud Storage
