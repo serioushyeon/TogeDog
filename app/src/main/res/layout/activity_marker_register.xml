@@ -14,7 +14,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.963" >
+        app:layout_constraintVertical_bias="0.963">
 
     </FrameLayout>
 
@@ -23,10 +23,10 @@
         android:layout_height="30dp"
         android:layout_marginTop="100dp"
         android:background="@color/white"
+        android:fontFamily="@font/main_font"
         android:gravity="center"
         android:text="@string/text_move_map_set_location"
         android:textSize="12sp"
-        android:fontFamily="@font/main_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,39 +38,45 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/background_login_btn"
+        android:fontFamily="@font/main_font"
         android:gravity="center"
         android:paddingHorizontal="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="서울특별시 강남구"
-        android:fontFamily="@font/main_font"/>
+        tools:text="서울특별시 강남구" />
 
     <EditText
         android:id="@+id/subtitle"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/background_login"
         android:ems="10"
         android:hint="subtitle"
         android:inputType="textPersonName"
         android:minHeight="32dp"
+        android:paddingStart="7dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/breed2"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/background_login"
         android:ems="10"
         android:hint="breed"
         android:inputType="textPersonName"
         android:minHeight="32dp"
+        android:paddingStart="7dp"
         app:layout_constraintStart_toEndOf="@+id/subtitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/register_center_marker"
@@ -87,12 +93,12 @@
         android:id="@+id/register_crosshair"
         android:layout_width="14dp"
         android:layout_height="14dp"
+        android:contentDescription="@string/crosshair"
         android:src="@drawable/crosshair"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/crosshair" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/register_floatingbtn"
@@ -100,10 +106,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="#00C42E"
+        android:contentDescription="@string/register"
         android:tint="@color/white"
-        app:tint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_check_24"
-        android:contentDescription="@string/register" />
+        app:tint="@null" />
 </androidx.constraintlayout.widget.ConstraintLayout>
