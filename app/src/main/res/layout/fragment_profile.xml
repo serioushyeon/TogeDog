@@ -67,24 +67,25 @@
             android:id="@+id/Picon"
             android:layout_width="35dp"
             android:layout_height="50dp"
-            android:layout_marginStart="17dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/shutdown" />
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/background_radius"
+            android:paddingStart="12dp"
             android:text="Log out"
-            android:background="@drawable/round_corner"
-            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Picon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
