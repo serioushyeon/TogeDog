@@ -1,5 +1,6 @@
 package com.example.dangdangee.board
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangdangee.R
@@ -23,6 +25,7 @@ import com.google.firebase.storage.ktx.storage
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
     private val boardKeyList = arrayListOf<String>()
     private val boardDataList = arrayListOf<BoardModel>()
+
     private val TAG = HomeFragment::class.java.simpleName
 
 
@@ -39,17 +42,17 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         getData()
         val ctext = holder.itemView.context
         // ImageView in your Activity
+      /*  val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
+        val imageViewFromFB = holder.image
 
-
+            holder.apply {
+                Glide.with(ctext)
+                    .load(storageReference.downloadUrl)
+                    .into(imageViewFromFB)
+            }*/
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
-        /*val imageViewFromFB = holder.image
 
-        Firebase.storage.reference.child(boardKeyList[position] + ".png").downloadUrl.addOnCompleteListener({task ->
-            if(task.isSuccessful){
-                Glide.with(ctext)
-                    .load(task.result)
-                    .into(imageViewFromFB) } else{ } })*/
 
         holder.itemView.setOnClickListener{
             onClick(ctext,position)
