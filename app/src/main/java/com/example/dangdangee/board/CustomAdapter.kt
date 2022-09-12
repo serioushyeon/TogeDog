@@ -42,7 +42,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         getData()
         val ctext = holder.itemView.context
         // ImageView in your Activity
-      /*  val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
+       /* val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
         val imageViewFromFB = holder.image
 
             holder.apply {

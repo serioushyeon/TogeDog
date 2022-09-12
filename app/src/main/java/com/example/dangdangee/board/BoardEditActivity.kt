@@ -55,7 +55,7 @@ class BoardEditActivity : AppCompatActivity() {
             .child(key)
             .setValue(BoardModel(
                 binding.evTitle2.text.toString(),
-                FBAuth.getUid(),
+                FBAuth.getEmail(),
                 binding.evBreed2.text.toString(),
                 binding.evTime2.text.toString(),
                 binding.evText2.text.toString(),
