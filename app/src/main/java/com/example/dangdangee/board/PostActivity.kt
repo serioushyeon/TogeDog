@@ -144,7 +144,7 @@ class PostActivity : AppCompatActivity() {
 
             finish()
         }
-        0    }
+    }
 
     private fun getImageData(key: String){
         // Reference to an image file in Cloud Storage
@@ -178,9 +178,9 @@ class PostActivity : AppCompatActivity() {
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
 
-                    val myuid = FBAuth.getUid()
+                    val mykey = FBAuth.getUid()
                     val writerUid = dataModel?.uid
-                    if(myuid.equals(writerUid)){
+                    if(mykey.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
                     }else{
 
