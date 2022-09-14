@@ -1,6 +1,5 @@
 package com.example.dangdangee.board
 
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -9,18 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
-import com.example.dangdangee.databinding.RvItemListBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
     private val boardKeyList = arrayListOf<String>()
@@ -49,7 +42,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
                 Glide.with(ctext)
                     .load(storageReference.downloadUrl)
                     .into(imageViewFromFB)
-            }*/
+         q  }*/
         holder.title.text=item.get(position).title
         holder.writer.text=item.get(position).uid
 

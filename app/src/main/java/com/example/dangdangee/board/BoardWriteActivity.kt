@@ -41,6 +41,7 @@ class BoardWriteActivity : AppCompatActivity() {
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
             val uid = FBAuth.getEmail()
+            val ukey = FBAuth.getUid()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
             val content = binding.evText.text.toString()
@@ -59,7 +60,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .child(key)
-                .setValue(BoardModel(title,uid,breed,lostday,content,time))
+                .setValue(BoardModel(title,uid,ukey,breed,lostday,content,time))
 
             if(isImageUpload) {
 
