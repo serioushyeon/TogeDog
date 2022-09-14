@@ -6,5 +6,6 @@ data class BoardModel (
     val breed : String = "",
     val lostday : String = "",
     val content : String = "",
-    val time : String = ""
+    val time : String = "",
+    val mid : String = "" //게시글 삭제 시 마커도 삭제하기 위함
 )

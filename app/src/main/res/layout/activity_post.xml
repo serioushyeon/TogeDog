@@ -136,6 +136,20 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/boardSettingIcon" />
 
+                    <Button
+                        android:id="@+id/btn_path_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/main_color"
+                        android:fontFamily="@font/main_font"
+                        android:text="목격 위치 등록"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_realtime" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -151,7 +165,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="56dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/round_corner_message"
             app:layout_constraintBottom_toBottomOf="parent"

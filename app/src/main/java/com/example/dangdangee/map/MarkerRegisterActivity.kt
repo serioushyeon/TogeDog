@@ -15,10 +15,7 @@ import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.board.BoardModel
 import com.example.dangdangee.databinding.ActivityMarkerRegisterBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -32,6 +29,8 @@ import java.util.*
 
 class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var key: String
+    private lateinit var tag : String
+    private lateinit var mid : String
     private lateinit var mapref: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
@@ -41,6 +40,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         mapref = Firebase.database.getReference("Marker")
 
         //현재 위치 사용 처리
@@ -79,6 +79,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
         key = intent.getStringExtra("key").toString()
+        tag = intent.getStringExtra("tag").toString()
         //getBoardData(key,Mtitle,Mbreed)
         val tv = binding.registerTvLocation //주소 표시
         val fab = binding.registerFloatingbtn //추가 플로팅 버튼
@@ -128,7 +129,9 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
                 //마커 추가
                 val subtitle = binding.subtitle.text.toString()
                 val breed2 = binding.breed2.text.toString()
-                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,"F", subtitle, tv.text.toString(), breed2, key, FBAuth.getTime()))
+                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,tag, subtitle, tv.text.toString(), breed2, key, FBAuth.getTime()))
+                if(tag == "F")
+                    FBRef.boardRef.child("$key/mid").setValue(mid) //게시글에 마커 정보 추가
                 finish() //등록 후 뒤로가기
             }
         }
@@ -136,30 +139,11 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     //마커 파이어베이스 등록 함수
     private fun addMarkerDB(mapModel: MapModel){
         key = intent.getStringExtra("key").toString()
-        mapref.push().setValue(mapModel)
+        mid = mapref.push().key.toString() //마커 등록하면서 키값 알아내기
+        mapref.child(mid).setValue(mapModel)
     }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-    }
-
-
-    private fun getBoardData(key: String, title: String, breed: String){
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                try {
-                    val dataModel = dataSnapshot.getValue(BoardModel::class.java)
-
-                    Log.d(ContentValues.TAG, dataSnapshot.toString())
-                }catch (e: Exception){
-                    Log.w(ContentValues.TAG, "삭제완료")
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-
-                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        FBRef.boardRef.child(key).addValueEventListener(postListener)
     }
 }

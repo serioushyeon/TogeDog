@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
@@ -38,7 +40,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
-            val uid = FBAuth.getUid()
+            val uid = FBAuth.getEmail()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
             val content = binding.evText.text.toString()
@@ -66,6 +68,7 @@ class BoardWriteActivity : AppCompatActivity() {
             }
             finish()
             val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("tag", "F") //최초 등록 태그
             intent.putExtra("key",key)
             startActivity(intent)
             //finish()

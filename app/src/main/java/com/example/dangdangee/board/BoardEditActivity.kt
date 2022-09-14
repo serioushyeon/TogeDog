@@ -32,7 +32,6 @@ class BoardEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_edit)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_edit)
-        setStatusBarColor(R.color.main_color)
 
         key = intent.getStringExtra("key").toString()
         getBoardData(key)
@@ -55,7 +54,7 @@ class BoardEditActivity : AppCompatActivity() {
             .child(key)
             .setValue(BoardModel(
                 binding.evTitle2.text.toString(),
-                FBAuth.getUid(),
+                FBAuth.getEmail(),
                 binding.evBreed2.text.toString(),
                 binding.evTime2.text.toString(),
                 binding.evText2.text.toString(),
@@ -110,15 +109,5 @@ class BoardEditActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 }

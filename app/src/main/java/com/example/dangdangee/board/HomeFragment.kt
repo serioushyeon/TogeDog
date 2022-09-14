@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
             getData()
+
             layoutManager = GridLayoutManager(requireContext(),2)
             setHasFixedSize(true)
             customAdapter = CustomAdapter(boardDataList)
@@ -40,8 +41,8 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
-    }
 
+    }
 
 
     private fun getData(){

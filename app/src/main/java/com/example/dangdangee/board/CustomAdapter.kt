@@ -1,7 +1,6 @@
 package com.example.dangdangee.board
 
-
-
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -10,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dangdangee.R
@@ -22,10 +22,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
     private val boardKeyList = arrayListOf<String>()
     private val boardDataList = arrayListOf<BoardModel>()
+
     private val TAG = HomeFragment::class.java.simpleName
 
 
@@ -41,8 +41,18 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
         val ctext = holder.itemView.context
-        holder.title.text = item[position].title
-        holder.writer.text = "작성자"
+        // ImageView in your Activity
+       /* val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
+        val imageViewFromFB = holder.image
+
+            holder.apply {
+                Glide.with(ctext)
+                    .load(storageReference.downloadUrl)
+                    .into(imageViewFromFB)
+            }*/
+        holder.title.text=item.get(position).title
+        holder.writer.text=item.get(position).uid
+
 
         holder.itemView.setOnClickListener{
             onClick(ctext,position)
@@ -54,6 +64,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.rv_title)
         val writer = itemView.findViewById<TextView>(R.id.rv_writer)
+        val image = itemView.findViewById<ImageView>(R.id.rv_dogProfile)
     }
 
 
@@ -81,8 +92,6 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
         }
         FBRef.boardRef.addValueEventListener(postListener)
     }
-
-
-
+    
 }
 

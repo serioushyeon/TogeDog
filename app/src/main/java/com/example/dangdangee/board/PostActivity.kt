@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -20,9 +18,11 @@ import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.comment.CommentLVAdapter
 import com.example.dangdangee.comment.CommentModel
 import com.example.dangdangee.databinding.ActivityPostBinding
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.lang.Exception
@@ -31,16 +31,17 @@ class PostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPostBinding
     private lateinit var key: String
+    private lateinit var mid: String
     private lateinit var commentkey: String
     private val commentDataList = mutableListOf<CommentModel>()
     private val commentKeyList = mutableListOf<String>()
     private lateinit var  commentAdapter : CommentLVAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
-        setStatusBarColor(R.color.main_color)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_post)
         key = intent.getStringExtra("key").toString()
@@ -66,6 +67,13 @@ class PostActivity : AppCompatActivity() {
             //keyList에 있는 key 받아오기
             commentkey = commentKeyList[position]
             showCDialog()
+        }
+
+        binding.btnPathRegister.setOnClickListener{
+            val intent = Intent(this, MarkerRegisterActivity::class.java)
+            intent.putExtra("key",key)
+            intent.putExtra("tag", "P")
+            startActivity(intent)
         }
 
     }
@@ -102,17 +110,17 @@ class PostActivity : AppCompatActivity() {
 
 
     private fun showCDialog(){
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-                .setTitle("삭제하시겠습니까?")
-            val alertDialog = mBuilder.show()
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("삭제하시겠습니까?")
+        val alertDialog = mBuilder.show()
 
-            alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
-                FBRef.commentRef.child(key).child(commentkey).removeValue()
-                Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-                finish()
-            }
+        alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
+            FBRef.commentRef.child(key).child(commentkey).removeValue()
+            Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     private fun showDialog(){
@@ -127,10 +135,16 @@ class PostActivity : AppCompatActivity() {
             startActivity(intent)
         }
         alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener{
+            var mapRef = Firebase.database.getReference("Marker")
+            FBRef.boardRef.child(key).child("mid").get().addOnSuccessListener {
+                mid = it.value.toString()
+                mapRef.child(mid).removeValue()
+            } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
+
             finish()
         }
-0    }
+        0    }
 
     private fun getImageData(key: String){
         // Reference to an image file in Cloud Storage
@@ -139,11 +153,14 @@ class PostActivity : AppCompatActivity() {
         // ImageView in your Activity
         val imageViewFromFB = binding.ivPostProfile
 
-        storageReference.downloadUrl.addOnCompleteListener({task ->
-            if(task.isSuccessful){
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 Glide.with(this)
                     .load(task.result)
-                    .into(imageViewFromFB) } else{ } })
+                    .into(imageViewFromFB)
+            } else {
+            }
+        }
     }
 
     private fun getBoardData(key: String){
@@ -194,14 +211,5 @@ class PostActivity : AppCompatActivity() {
 
     }
 
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
-    }
 
 }
