@@ -44,7 +44,7 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
                     .into(imageViewFromFB)
          q  }*/
         holder.title.text=item.get(position).title
-        holder.writer.text=item.get(position).uid
+        holder.writer.text=item.get(position).ekey
 
 
         holder.itemView.setOnClickListener{

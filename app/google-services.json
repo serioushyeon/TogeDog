@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "681124788910",
-    "firebase_url": "https://dangdangeee-1941a-default-rtdb.firebaseio.com",
-    "project_id": "dangdangeee-1941a",
-    "storage_bucket": "dangdangeee-1941a.appspot.com"
+    "project_number": "227316437677",
+    "project_id": "togedog-ea2cd",
+    "storage_bucket": "togedog-ea2cd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:681124788910:android:def158c12abb70d6a0cb3f",
+        "mobilesdk_app_id": "1:227316437677:android:c5bd8544ca7eede59cac24",
         "android_client_info": {
           "package_name": "com.example.dangdangee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "681124788910-inp1gqgrgu4sdc485tlr4iasu9qhm1sc.apps.googleusercontent.com",
+          "client_id": "227316437677-amtvfaf3744qg1d55h3v0jm70j7gq0it.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dangdangee",
+            "certificate_hash": "7fd87d416524c14155fd2978148747850016306c"
+          }
+        },
+        {
+          "client_id": "227316437677-n7qa34ep6nhvvv2ao6id4aevl3bdmeep.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAlhuOaP3r9RIBY2mw2I-NNCYS4utMNQIQ"
+          "current_key": "AIzaSyBehsl7Qvfej50nlSk7ZP1pfksS8c66VRg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "681124788910-inp1gqgrgu4sdc485tlr4iasu9qhm1sc.apps.googleusercontent.com",
+              "client_id": "227316437677-n7qa34ep6nhvvv2ao6id4aevl3bdmeep.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

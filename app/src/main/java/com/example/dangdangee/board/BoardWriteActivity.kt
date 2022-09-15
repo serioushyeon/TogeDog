@@ -1,17 +1,12 @@
 package com.example.dangdangee.board
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.WindowManager
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
@@ -40,7 +35,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
-            val uid = FBAuth.getEmail()
+            val eid = FBAuth.getEmail()
             val ukey = FBAuth.getUid()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
@@ -60,7 +55,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .child(key)
-                .setValue(BoardModel(title,uid,ukey,breed,lostday,content,time))
+                .setValue(BoardModel(title,eid,ukey,breed,lostday,content,time))
 
             if(isImageUpload) {
 

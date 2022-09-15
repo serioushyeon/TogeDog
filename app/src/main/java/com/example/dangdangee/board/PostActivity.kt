@@ -176,7 +176,7 @@ class PostActivity : AppCompatActivity() {
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
-                    binding.tvWriter.text = dataModel?.ukey
+                    binding.tvWriter.text = dataModel?.ekey
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
