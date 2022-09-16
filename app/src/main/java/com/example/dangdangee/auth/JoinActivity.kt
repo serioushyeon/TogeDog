@@ -29,26 +29,27 @@ class JoinActivity : AppCompatActivity() {
         setStatusBarColor(R.color.main_color)
 
         auth = Firebase.auth
+        binding.joinBtn.setOnClickListener {
+            //if (validation()) {
+                val email = binding.emailArea.text.toString()
+                val password = binding.passwordArea1.text.toString()
 
-        if (validation()) {
-            val email = binding.emailArea.text.toString()
-            val password = binding.passwordArea1.text.toString()
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
+                            val user = auth.currentUser
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
+                            startActivity(intent)
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
-                        val user = auth.currentUser
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기
-                        startActivity(intent)
-
-                    } else {
-                        Toast.makeText(this, "no", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
 
+           // }
         }
     }
 

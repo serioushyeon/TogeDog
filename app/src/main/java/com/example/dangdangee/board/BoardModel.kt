@@ -2,7 +2,7 @@ package com.example.dangdangee.board
 
 data class BoardModel (
     val title : String = "",
-    val ukey : String ="",
+    val ekey : String ="",
     val uid : String = "",
     val breed : String = "",
     val lostday : String = "",
