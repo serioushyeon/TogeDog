@@ -107,7 +107,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/name_edit"
+                    android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -116,6 +116,8 @@
                     android:text="홍길동"
                     android:textColor="#000000"
                     android:textSize="16sp"
+                    android:singleLine="true"
+                    android:lines="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view3"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -166,7 +168,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/email_edit"
+                    android:id="@+id/profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -224,7 +226,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/profile_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -235,6 +237,8 @@
                     android:text="············"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:singleLine="true"
+                    android:lines="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view4"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -289,7 +293,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/profile_edit_btn"
             android:layout_width="330dp"
             android:layout_height="50dp"
             android:layout_marginTop="46dp"
