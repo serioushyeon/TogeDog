@@ -10,5 +10,6 @@
     <color name="map_blue_color">#3F79FF</color>
     <color name="key_color">#FFD933</color>
     <color name="main_color">#FFBD1B</color>
+    <color name="gray">#81807D</color>
     <color name="editText_color">#78909C</color>
 </resources>

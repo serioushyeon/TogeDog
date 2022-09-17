@@ -12,7 +12,6 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/main_font"
         android:text="삭제"
         android:textColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,13 +20,11 @@
 
     <Button
         android:id="@+id/button"
-
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/main_font"
         android:text="취소"
         android:textColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -8,6 +8,7 @@
         >
 
         <ScrollView
+            android:id="@+id/scrollView_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +44,6 @@
                         android:layout_marginBottom="5dp"
                         android:background="@null"
                         android:ems="10"
-                        android:fontFamily="@font/main_font"
                         android:hint="게시글 제목을 입력해주세요."
                         android:importantForAutofill="no"
                         android:inputType="textPersonName"
@@ -60,9 +60,8 @@
                         android:inputType="textPersonName"
                         android:text="작성자"
                         android:textSize="16sp"
-                        tools:ignore="TouchTargetSizeCheck"
                         android:textStyle="bold"
-                        android:fontFamily="@font/main_font"/>
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -79,15 +78,14 @@
                             android:importantForAutofill="no"
                             android:inputType="textPersonName"
                             android:minHeight="48dp"
-                            android:textColorHint="@color/editText_color"
-                            android:fontFamily="@font/main_font"/>
+                            android:textColorHint="@color/editText_color" />
 
                         <View
                             android:layout_width="2dp"
                             android:layout_height="22dp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginHorizontal="10dp"
-                            android:background="#E1DADA"
-                            android:layout_gravity="center_vertical"/>
+                            android:background="#E1DADA" />
 
                         <EditText
                             android:id="@+id/ev_time2"
@@ -98,8 +96,7 @@
                             android:importantForAutofill="no"
                             android:inputType="textPersonName"
                             android:minHeight="48dp"
-                            android:textColorHint="@color/editText_color"
-                            android:fontFamily="@font/main_font"/>
+                            android:textColorHint="@color/editText_color" />
 
                     </LinearLayout>
 
@@ -114,8 +111,7 @@
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
                         android:minHeight="48dp"
-                        android:textColorHint="@color/editText_color"
-                        android:fontFamily="@font/main_font"/>
+                        android:textColorHint="@color/editText_color" />
                 </LinearLayout>
 
                 <Button
@@ -123,10 +119,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="수정"
+                    android:background="@drawable/rounded_main_color_btn"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:text="EDIT"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/main_color"
-                    android:fontFamily="@font/main_font"/>
+                    android:textSize="17sp" />
             </LinearLayout>
         </ScrollView>
 

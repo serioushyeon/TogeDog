@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
+import com.example.dangdangee.databinding.ActivityJoinBinding
 import com.example.dangdangee.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,18 +20,15 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_login)
-
-        setStatusBarColor(R.color.main_color)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         auth = Firebase.auth
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
-        binding.joinBtn.setOnClickListener {
+        binding.loginJoinBtn.setOnClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
@@ -51,15 +49,5 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 }

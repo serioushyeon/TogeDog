@@ -68,7 +68,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/main_font"
                 android:gravity="center"
                 android:text="TogeDog"
                 android:textColor="#FFFFFF"
@@ -84,7 +83,6 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="5dp"
                 android:baselineAligned="false"
-                android:fontFamily="@font/main_font"
                 android:text="find a dog together"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
@@ -112,10 +110,11 @@
                 android:layout_width="330dp"
                 android:layout_height="50dp"
                 android:background="@drawable/background_login"
-                android:textSize="17sp"
-                android:fontFamily="@font/main_font"
                 android:hint="email"
+                android:lines="1"
                 android:paddingLeft="13dp"
+                android:singleLine="true"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -127,11 +126,12 @@
                 android:layout_height="55dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/background_login"
-                android:textSize="17sp"
-                android:fontFamily="@font/main_font"
                 android:hint="password"
                 android:inputType="textPassword"
+                android:lines="1"
                 android:paddingLeft="13dp"
+                android:singleLine="true"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -139,36 +139,36 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/joinBtn"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/background_login_btn"
-            android:text="Join"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="@color/main_color"
-            android:fontFamily="@font/main_font"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
-
-        <Button
             android:id="@+id/loginBtn"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="52dp"
             android:background="@drawable/background_radius"
+            android:gravity="center"
             android:text="Log In"
-            android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:fontFamily="@font/main_font"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/loginJoinBtn"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_login_btn"
+            android:gravity="center"
+            android:text="Join"
+            android:textAllCaps="false"
+            android:textColor="@color/main_color"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

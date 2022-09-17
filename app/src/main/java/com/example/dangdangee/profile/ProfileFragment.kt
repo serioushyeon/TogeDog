@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
 class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     override fun onCreateView(
@@ -22,10 +21,9 @@ class ProfileFragment : Fragment() {
     ): FrameLayout{
         val binding = FragmentProfileBinding.inflate(inflater,container,false)
         auth = Firebase.auth
-        binding.textView9.setOnClickListener {
+        binding.logOutBtn.setOnClickListener {
             auth.signOut()
             startActivity(Intent(activity,LoginActivity::class.java))
-
         }
         return binding.root
     }

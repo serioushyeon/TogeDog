@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView_write"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +40,7 @@
                     android:id="@+id/ev_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:background="@null"
                     android:ems="10"
                     android:hint="게시글 제목을 입력해주세요."
@@ -47,9 +49,7 @@
                     android:minHeight="48dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/editText_color"
-                    android:textSize="22sp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/main_font"/>
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/ev_writer"
@@ -59,9 +59,8 @@
                     android:inputType="textPersonName"
                     android:text="작성자"
                     android:textSize="16sp"
-                    tools:ignore="TouchTargetSizeCheck"
                     android:textStyle="bold"
-                    android:fontFamily="@font/main_font"/>
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,8 +77,7 @@
                         android:importantForAutofill="no"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:textColorHint="@color/editText_color"
-                        android:fontFamily="@font/main_font"/>
+                        android:textColorHint="@color/editText_color" />
 
                     <View
                         android:layout_width="2dp"
@@ -97,8 +95,7 @@
                         android:importantForAutofill="no"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:textColorHint="@color/editText_color"
-                        android:fontFamily="@font/main_font"/>
+                        android:textColorHint="@color/editText_color" />
 
                 </LinearLayout>
 
@@ -113,8 +110,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:minHeight="48dp"
-                    android:textColorHint="@color/editText_color"
-                    android:fontFamily="@font/main_font"/>
+                    android:textColorHint="@color/editText_color" />
 
             </LinearLayout>
 
@@ -123,10 +119,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/rounded_main_color_btn"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
                 android:text="OK"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/main_color"
-                android:fontFamily="@font/main_font"/>
+                android:textSize="17sp" />
         </LinearLayout>
     </ScrollView>
 

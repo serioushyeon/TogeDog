@@ -24,12 +24,10 @@ class JoinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_join)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
-        setStatusBarColor(R.color.main_color)
 
         auth = Firebase.auth
-        binding.joinBtn.setOnClickListener {
+        binding.joinAppBtn.setOnClickListener {
             //if (validation()) {
                 val email = binding.emailArea.text.toString()
                 val password = binding.passwordArea1.text.toString()
@@ -77,16 +75,6 @@ class JoinActivity : AppCompatActivity() {
 
         return true
 
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this, color))
     }
 
 }

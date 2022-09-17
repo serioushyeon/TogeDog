@@ -2,15 +2,37 @@
     <!-- Base application theme. -->
     <style name="Theme.DangDangee" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/main_color</item>
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- custom font-family 적용 -->
+        <item name="android:textViewStyle">@style/mainFont</item>
+        <item name="android:editTextStyle">@style/mainFont</item>
+        <item name="android:buttonStyle">@style/mainFont</item>
+        <item name="android:radioButtonStyle">@style/mainFont</item>
+        <item name="android:checkboxStyle">@style/mainFont</item>
+    </style>
+    <style name="AuthEditText" parent="android:Widget.EditText">
+
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/map_bottom_sheet_radius</item>
     </style>
 </resources>
