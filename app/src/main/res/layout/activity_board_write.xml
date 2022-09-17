@@ -2,131 +2,155 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView_write"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/scrollView_write"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                android:contentDescription="강아지 사진"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/ev_title"
+                <ImageView
+                    android:id="@+id/iv_profile"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:background="@null"
-                    android:ems="10"
-                    android:hint="게시글 제목을 입력해주세요."
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/editText_color"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/ev_writer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:inputType="textPersonName"
-                    android:text="작성자"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_height="300dp"
+                    android:contentDescription="강아지 사진"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/ev_breed"
+                        android:id="@+id/ev_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:background="@null"
-                        android:hint="강아지 종"
+                        android:ems="10"
+                        android:hint="게시글 제목을 입력해주세요."
                         android:importantForAutofill="no"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:textColorHint="@color/editText_color" />
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/editText_color"
+                        android:textSize="22sp" />
 
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="22dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:background="#E1DADA" />
-
-                    <EditText
-                        android:id="@+id/ev_time"
+                    <TextView
+                        android:id="@+id/ev_writer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="0000.00.00"
-                        android:importantForAutofill="no"
+                        android:layout_marginBottom="15dp"
                         android:inputType="textPersonName"
+                        android:text="작성자"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/ev_dogName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="강아지 종"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:minHeight="48dp"
+                            android:textColorHint="@color/editText_color" />
+
+                        <View
+                            android:id="@+id/view7"
+                            android:layout_width="2dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="#E1DADA" />
+
+                        <EditText
+                            android:id="@+id/ev_breed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="강아지 종"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:minHeight="48dp"
+                            android:textColorHint="@color/editText_color" />
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="#E1DADA" />
+
+                        <EditText
+                            android:id="@+id/ev_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="0000.00.00"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:minHeight="48dp"
+                            android:textColorHint="@color/editText_color" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/ev_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:ems="17"
+                        android:hint="게시글 내용"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
                         android:minHeight="48dp"
                         android:textColorHint="@color/editText_color" />
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/ev_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@null"
-                    android:ems="17"
-                    android:hint="게시글 내용"
-                    android:importantForAutofill="no"
-                    android:inputType="textMultiLine"
-                    android:minHeight="48dp"
-                    android:textColorHint="@color/editText_color" />
-
             </LinearLayout>
+        </ScrollView>
 
-            <Button
-                android:id="@+id/pingping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_main_color_btn"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="8dp"
-                android:text="OK"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-        </LinearLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/pingping"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rounded_main_color_btn"
+            android:gravity="center"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

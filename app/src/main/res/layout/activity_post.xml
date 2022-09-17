@@ -63,14 +63,36 @@
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
-                        android:id="@+id/tv_breed"
+                        android:id="@+id/tv_dogName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="16dp"
-                        android:text="강아지 종"
-                        android:textSize="18sp"
+                        android:text="강아지 이름"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="2dp"
+                        android:layout_height="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#E1DADA"
+                        app:layout_constraintStart_toEndOf="@+id/tv_dogName"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
+
+                    <TextView
+                        android:id="@+id/tv_breed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="16dp"
+                        android:text="강아지 종"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/view6"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
                     <View
@@ -78,7 +100,7 @@
                         android:layout_width="2dp"
                         android:layout_height="20dp"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="16dp"
                         android:background="#E1DADA"
                         app:layout_constraintStart_toEndOf="@+id/tv_breed"
@@ -91,7 +113,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="16dp"
                         android:text="실종 날짜"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/view"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -160,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/profile_change_btn"
+            android:background="@drawable/commet_rounded"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
