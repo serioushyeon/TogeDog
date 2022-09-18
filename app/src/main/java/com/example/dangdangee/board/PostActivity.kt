@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.auth.UserModel
 import com.example.dangdangee.comment.CommentLVAdapter
 import com.example.dangdangee.comment.CommentModel
 import com.example.dangdangee.databinding.ActivityPostBinding
@@ -173,6 +174,7 @@ class PostActivity : AppCompatActivity() {
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
                     binding.tvWriter.text = dataModel?.ekey
+                    binding.tvDogName.text = dataModel?.dogname
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
@@ -197,6 +199,7 @@ class PostActivity : AppCompatActivity() {
         }
         FBRef.boardRef.child(key).addValueEventListener(postListener)
     }
+
     fun insertComment(key: String){
         val comment = binding.commentArea.text.toString()
         FBRef.commentRef

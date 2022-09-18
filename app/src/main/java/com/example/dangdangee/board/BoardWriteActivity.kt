@@ -37,6 +37,7 @@ class BoardWriteActivity : AppCompatActivity() {
             val title = binding.evTitle.text.toString()
             val eid = FBAuth.getEmail()
             val ukey = FBAuth.getUid()
+            val dogname = binding.evDogName.text.toString()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
             val content = binding.evText.text.toString()
@@ -55,7 +56,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .child(key)
-                .setValue(BoardModel(title,eid,ukey,breed,lostday,content,time))
+                .setValue(BoardModel(title,eid,ukey,dogname,breed,lostday,content,time))
 
             if(isImageUpload) {
 

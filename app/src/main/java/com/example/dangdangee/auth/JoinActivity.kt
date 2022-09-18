@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBAuth
+import com.example.dangdangee.Utils.FBRef
+import com.example.dangdangee.board.BoardModel
 import com.example.dangdangee.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -36,6 +39,9 @@ class JoinActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            FBRef.boardRef
+                                .child("User").child(FBAuth.getUid())
+                                .setValue(nickn)
                             Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
                             val user = auth.currentUser
                             val intent = Intent(this, MainActivity::class.java)
