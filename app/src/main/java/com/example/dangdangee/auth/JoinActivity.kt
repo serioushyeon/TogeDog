@@ -31,6 +31,7 @@ class JoinActivity : AppCompatActivity() {
             //if (validation()) {
                 val email = binding.emailArea.text.toString()
                 val password = binding.passwordArea1.text.toString()
+                val nickn = binding.nicknameArea.text.toString()
 
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
