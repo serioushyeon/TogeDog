@@ -52,14 +52,14 @@ class BoardEditActivity : AppCompatActivity() {
 
         FBRef.boardRef
             .child(key)
-            .setValue(BoardModel(
-                binding.evTitle2.text.toString(),
+            .setValue(BoardModel( binding.evTitle2.text.toString(),
                 FBAuth.getEmail(),
+                FBAuth.getUid(),
+                binding.evDogName2.text.toString(),
                 binding.evBreed2.text.toString(),
                 binding.evTime2.text.toString(),
                 binding.evText2.text.toString(),
-                FBAuth.getTime()
-            ))
+                FBAuth.getTime()))
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
 
@@ -74,8 +74,10 @@ class BoardEditActivity : AppCompatActivity() {
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
                     Log.d(ContentValues.TAG, dataSnapshot.toString())
 
+
                     binding.evTitle2.setText(dataModel?.title)
-                    binding.evWriter2.text = dataModel?.uid
+                    binding.evWriter2.text = dataModel?.ekey
+                    binding.evDogName2.setText(dataModel?.dogname)
                     binding.evBreed2.setText(dataModel?.breed)
                     binding.evTime2.setText(dataModel?.lostday)
                     binding.evText2.setText(dataModel?.content)

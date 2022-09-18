@@ -119,7 +119,13 @@ class PostActivity : AppCompatActivity() {
         alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
             FBRef.commentRef.child(key).child(commentkey).removeValue()
             Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-            finish()
+            Log.d(TAG,"commentdelete")
+            alertDialog.cancel()
+
+            //원래 게시물로 돌아가기
+        }
+        alertDialog.findViewById<Button>(R.id.button)?.setOnClickListener {
+            alertDialog.cancel()
         }
     }
 
@@ -171,11 +177,12 @@ class PostActivity : AppCompatActivity() {
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
                     binding.tvWriter.text = dataModel?.ekey
+                    binding.tvDogName.text = dataModel?.name
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
-                    binding.tvDogName.text = dataModel?.name
+
 
                     val mykey = FBAuth.getUid()
                     val writerUid = dataModel?.uid
@@ -199,7 +206,8 @@ class PostActivity : AppCompatActivity() {
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()))
+            .setValue(CommentModel(comment,FBAuth.getEmail(),FBAuth.getTime()
+            ))
 
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
         binding.commentArea.setText("")
