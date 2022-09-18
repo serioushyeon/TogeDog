@@ -17,6 +17,10 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/DangDanreal/app/src/main/res/layout/fragment_map_bottom_sheet.xml" value="0.146875" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/DangDanreal/app/src/main/res/layout/fragment_profile.xml" value="0.18704710144927536" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/DangDanreal/app/src/main/res/layout/rv_item_list.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/DangDangeelast/app/src/main/res/layout/activity_login.xml" value="0.2015625" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/DangDangeelast/app/src/main/res/layout/activity_post.xml" value="0.1765625" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/DangDangeelast/app/src/main/res/layout/custom_dialog2.xml" value="0.1984375" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/DangDangeelast/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.256" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/drawable/menu_selector_color.xml" value="0.111" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/DangDangee/app/src/main/res/layout/activity_board_write.xml" value="0.225" />
@@ -59,10 +63,6 @@
         <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangClone/app/src/main/res/layout/fragment_map_bottom_sheet.xml" value="0.22554347826086957" />
         <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangClone/app/src/main/res/layout/fragment_profile.xml" value="0.25364583333333335" />
         <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangClone/app/src/main/res/layout/rv_item_list.xml" value="0.22554347826086957" />
-        <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangeeClone/app/src/main/res/drawable/rounded_main_color_btn.xml" value="0.242" />
-        <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangeeClone/app/src/main/res/layout/activity_post.xml" value="0.25364583333333335" />
-        <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangeeClone/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
-        <entry key="..\:/workspace/Android_Workspace/Kotlin/DangDangeeClone/app/src/main/res/layout/rv_item_list.xml" value="0.1125" />
       </map>
     </option>
   </component>

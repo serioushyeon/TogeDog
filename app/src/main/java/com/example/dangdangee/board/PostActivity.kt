@@ -114,12 +114,19 @@ class PostActivity : AppCompatActivity() {
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
             .setTitle("삭제하시겠습니까?")
+            .setCancelable(true)
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
             FBRef.commentRef.child(key).child(commentkey).removeValue()
             Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
-            finish()
+            Log.d(TAG,"commentdelete")
+            alertDialog.cancel()
+
+            //원래 게시물로 돌아가기
+        }
+        alertDialog.findViewById<Button>(R.id.button)?.setOnClickListener {
+            alertDialog.cancel()
         }
     }
 
@@ -202,7 +209,7 @@ class PostActivity : AppCompatActivity() {
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()
+            .setValue(CommentModel(comment,FBAuth.getEmail(),FBAuth.getTime()
             )
             )
 
