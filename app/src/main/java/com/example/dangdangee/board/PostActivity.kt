@@ -119,7 +119,9 @@ class PostActivity : AppCompatActivity() {
         alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
             FBRef.commentRef.child(key).child(commentkey).removeValue()
             Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+
             finish()
+
         }
     }
 
@@ -204,9 +206,8 @@ class PostActivity : AppCompatActivity() {
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()
-            )
-            )
+            .setValue(CommentModel(comment,FBAuth.getEmail(),FBAuth.getTime()
+            ))
 
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
         binding.commentArea.setText("")
