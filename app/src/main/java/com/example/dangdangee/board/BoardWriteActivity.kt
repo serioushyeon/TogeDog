@@ -40,6 +40,7 @@ class BoardWriteActivity : AppCompatActivity() {
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
             val content = binding.evText.text.toString()
+            val name = binding.evDogName.text.toString()
             val time = FBAuth.getTime()
 
             Log.d(TAG,title)
@@ -55,7 +56,7 @@ class BoardWriteActivity : AppCompatActivity() {
             //      -boardModel(title, content, uid, time)
             FBRef.boardRef
                 .child(key)
-                .setValue(BoardModel(title,eid,ukey,breed,lostday,content,time))
+                .setValue(BoardModel(title,eid,ukey,breed,lostday,content,time,"",name))
 
             if(isImageUpload) {
 
@@ -66,6 +67,8 @@ class BoardWriteActivity : AppCompatActivity() {
             val intent = Intent(this, MarkerRegisterActivity::class.java)
             intent.putExtra("tag", "F") //최초 등록 태그
             intent.putExtra("key",key)
+            intent.putExtra("breed", breed)
+            intent.putExtra("name", name)
             startActivity(intent)
             //finish()
         }

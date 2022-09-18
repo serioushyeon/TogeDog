@@ -31,6 +31,8 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var key: String
     private lateinit var tag : String
     private lateinit var mid : String
+    private  lateinit var name : String
+    private  lateinit var breed : String
     private lateinit var mapref: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
@@ -80,6 +82,8 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     override fun onMapReady(naverMap: NaverMap) {
         key = intent.getStringExtra("key").toString()
         tag = intent.getStringExtra("tag").toString()
+        name = intent.getStringExtra("name").toString()
+        breed = intent.getStringExtra("breed").toString()
         //getBoardData(key,Mtitle,Mbreed)
         val tv = binding.registerTvLocation //주소 표시
         val fab = binding.registerFloatingbtn //추가 플로팅 버튼
@@ -127,9 +131,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         fab.setOnClickListener {
             if(!tv.text.equals("주소를 가져 올 수 없습니다.")) {
                 //마커 추가
-                val subtitle = binding.subtitle.text.toString()
-                val breed2 = binding.breed2.text.toString()
-                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,tag, subtitle, tv.text.toString(), breed2, key, FBAuth.getTime()))
+                addMarkerDB(MapModel(naverMap.cameraPosition.target.latitude,naverMap.cameraPosition.target.longitude,tag, name, tv.text.toString(), breed, key, FBAuth.getTime()))
                 if(tag == "F")
                     FBRef.boardRef.child("$key/mid").setValue(mid) //게시글에 마커 정보 추가
                 finish() //등록 후 뒤로가기

@@ -7,6 +7,7 @@ import android.graphics.PointF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import com.example.dangdangee.R
 import com.example.dangdangee.databinding.ActivityPathBinding
 import com.google.firebase.database.*
@@ -48,6 +49,17 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
             }
         mapFragment.getMapAsync(this)
 
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item?.itemId){
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
     }
     //맵 레디 콜백
     override fun onMapReady(naverMap: NaverMap) {
