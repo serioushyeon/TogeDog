@@ -119,9 +119,13 @@ class PostActivity : AppCompatActivity() {
         alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
             FBRef.commentRef.child(key).child(commentkey).removeValue()
             Toast.makeText(this,"삭제완료",Toast.LENGTH_LONG).show()
+            Log.d(TAG,"commentdelete")
+            alertDialog.cancel()
 
-            finish()
-
+            //원래 게시물로 돌아가기
+        }
+        alertDialog.findViewById<Button>(R.id.button)?.setOnClickListener {
+            alertDialog.cancel()
         }
     }
 
