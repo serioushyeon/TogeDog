@@ -15,9 +15,11 @@ import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityBoardEditBinding
+import com.example.dangdangee.map.MarkerRegisterActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.lang.Exception
@@ -27,6 +29,7 @@ class BoardEditActivity : AppCompatActivity() {
     private lateinit var key: String
     private lateinit var binding: ActivityBoardEditBinding
     private var isImageUpload = false
+    private lateinit var mid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,15 @@ class BoardEditActivity : AppCompatActivity() {
     }
 
     private fun editBoardData(key: String){
+        val title2 = binding.evTitle2.text.toString()
+        val eid2 = FBAuth.getEmail()
+        val ukey2 = FBAuth.getUid()
+        val dogname2 = binding.evDogName2.text.toString()
+        val breed2 = binding.evBreed2.text.toString()
+        val lostday2 = binding.evTime2.text.toString()
+        val content2 = binding.evText2.text.toString()
+        val time2 = FBAuth.getTime()
+
 
         FBRef.boardRef
             .child(key)
@@ -60,9 +72,18 @@ class BoardEditActivity : AppCompatActivity() {
                 binding.evTime2.text.toString(),
                 binding.evText2.text.toString(),
                 FBAuth.getTime()))
-        val intent = Intent(this, MainActivity::class.java)
+        var mapRef = Firebase.database.getReference("Marker")
+        FBRef.boardRef.child(key).child("mid").get().addOnSuccessListener {
+            mid = it.value.toString()
+            mapRef.child(mid).removeValue()
+        }
+        val intent = Intent(this, MarkerRegisterActivity::class.java)
+        intent.putExtra("tag", "F") //최초 등록 태그
+        intent.putExtra("key",key)
+        intent.putExtra("breed", breed2)
+        intent.putExtra("name", dogname2)
         startActivity(intent)
-
+        finish()
     }
 
     private fun getBoardData(key: String){
