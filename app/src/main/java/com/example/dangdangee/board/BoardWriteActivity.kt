@@ -67,6 +67,8 @@ class BoardWriteActivity : AppCompatActivity() {
             val intent = Intent(this, MarkerRegisterActivity::class.java)
             intent.putExtra("tag", "F") //최초 등록 태그
             intent.putExtra("key",key)
+            intent.putExtra("breed", breed)
+            intent.putExtra("name", dogname)
             startActivity(intent)
             //finish()
         }
