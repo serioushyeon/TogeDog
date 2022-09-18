@@ -110,7 +110,7 @@ class PostActivity : AppCompatActivity() {
 
 
     private fun showCDialog(){
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
             .setTitle("삭제하시겠습니까?")
