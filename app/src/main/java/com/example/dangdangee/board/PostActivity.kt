@@ -177,7 +177,7 @@ class PostActivity : AppCompatActivity() {
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
                     binding.tvWriter.text = dataModel?.ekey
-                    binding.tvDogName.text = dataModel?.name
+                    binding.tvDogName.text = dataModel?.dogname
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content

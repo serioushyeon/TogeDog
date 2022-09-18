@@ -10,5 +10,4 @@ data class BoardModel (
     val content : String = "",
     val time : String = "",
     val mid : String = "",
-    val name : String = ""//게시글 삭제 시 마커도 삭제하기 위함
 )
