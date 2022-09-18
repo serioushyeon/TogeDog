@@ -177,6 +177,7 @@ class PostActivity : AppCompatActivity() {
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
+                    binding.tvDogName.text = dataModel?.name
 
                     val mykey = FBAuth.getUid()
                     val writerUid = dataModel?.uid
