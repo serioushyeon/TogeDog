@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/bottom_map"
+        android:id="@+id/mainMapFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_map_24"
         android:title=""
@@ -10,7 +10,7 @@
         />
 
     <item
-        android:id="@+id/bottom_board"
+        android:id="@+id/postFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_list_24"
         android:title=""
@@ -18,7 +18,7 @@
         />
 
     <item
-        android:id="@+id/bottom_profile"
+        android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/logo"
         android:title=""

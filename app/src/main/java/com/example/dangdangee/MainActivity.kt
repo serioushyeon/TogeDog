@@ -22,21 +22,18 @@ class MainActivity : AppCompatActivity(){
         val navigationBarView = binding.bottomNavigationview
         navigationBarView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bottom_map -> {
+                R.id.mainMapFragment -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, mapFragment)
-                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
-                R.id.bottom_board -> {
+                R.id.postFragment -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, homeFragment)
-                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
-                R.id.bottom_profile -> {
+                R.id.profileFragment -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, profileFragment)
-                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
