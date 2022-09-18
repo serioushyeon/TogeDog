@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
 import com.example.dangdangee.auth.LoginActivity
 import com.example.dangdangee.databinding.FragmentProfileBinding
@@ -65,9 +66,17 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        binding.profileBackBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .remove(this)
+                .commit()
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         binding.logOutBtn.setOnClickListener {
             auth.signOut()
             startActivity(Intent(activity,LoginActivity::class.java))
+            requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
         return binding.root
     }
