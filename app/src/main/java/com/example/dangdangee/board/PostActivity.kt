@@ -110,7 +110,7 @@ class PostActivity : AppCompatActivity() {
 
 
     private fun showCDialog(){
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog2,null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
             .setTitle("삭제하시겠습니까?")
@@ -143,7 +143,6 @@ class PostActivity : AppCompatActivity() {
                 mapRef.child(mid).removeValue()
             } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
-
             finish()
         }
     }
@@ -160,7 +159,6 @@ class PostActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
-            } else {
             }
         }
     }
@@ -175,19 +173,17 @@ class PostActivity : AppCompatActivity() {
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
                     binding.tvWriter.text = dataModel?.ekey
-                    binding.tvDogName.text = dataModel?.dogname
+                    binding.tvDogName.text = dataModel?.name
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
-                    binding.tvDogName.text = dataModel?.name
+
 
                     val mykey = FBAuth.getUid()
                     val writerUid = dataModel?.uid
                     if(mykey.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
-                    }else{
-
                     }
 
                 }catch (e: Exception){

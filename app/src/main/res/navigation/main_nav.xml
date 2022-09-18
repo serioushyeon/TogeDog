@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/writeFragment"
-        android:name="com.example.dangdangee.board.WriteFragment"
+        android:name="com.example.dangdangee.board.BoardWriteActivity"
         android:label="WriteFragment" >
         <action
             android:id="@+id/action_writeFragment_to_homeFragment"
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.example.dangdangee.board.PostFragment"
+        android:name="com.example.dangdangee.board.PostActivity"
         android:label="PostFragment" >
         <action
             android:id="@+id/action_postFragment_to_homeFragment"

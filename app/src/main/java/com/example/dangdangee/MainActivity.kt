@@ -2,6 +2,7 @@ package com.example.dangdangee
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.dangdangee.board.HomeFragment
 import com.example.dangdangee.databinding.ActivityMainBinding
 import com.example.dangdangee.map.MainMapFragment
@@ -23,16 +24,19 @@ class MainActivity : AppCompatActivity(){
             when (item.itemId) {
                 R.id.bottom_map -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, mapFragment)
+                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
                 R.id.bottom_board -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, homeFragment)
+                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
                 R.id.bottom_profile -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_containers, profileFragment)
+                        .addToBackStack(null)
                         .commit()
                     return@OnItemSelectedListener true
                 }
