@@ -141,7 +141,6 @@ class PostActivity : AppCompatActivity() {
                 mapRef.child(mid).removeValue()
             } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
-
             finish()
         }
     }
@@ -158,7 +157,6 @@ class PostActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
-            } else {
             }
         }
     }
@@ -182,8 +180,6 @@ class PostActivity : AppCompatActivity() {
                     val writerUid = dataModel?.uid
                     if(mykey.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
-                    }else{
-
                     }
 
                 }catch (e: Exception){
@@ -202,9 +198,7 @@ class PostActivity : AppCompatActivity() {
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()
-            )
-            )
+            .setValue(CommentModel(comment,FBAuth.getUid(),FBAuth.getTime()))
 
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
         binding.commentArea.setText("")
