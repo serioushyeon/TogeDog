@@ -114,6 +114,7 @@ class PostActivity : AppCompatActivity() {
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
             .setTitle("삭제하시겠습니까?")
+            .setCancelable(true)
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.removeBtn2)?.setOnClickListener{
@@ -147,6 +148,7 @@ class PostActivity : AppCompatActivity() {
                 mapRef.child(mid).removeValue()
             } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
+
             finish()
         }
     }
@@ -163,6 +165,7 @@ class PostActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
+            } else {
             }
         }
     }
@@ -183,11 +186,12 @@ class PostActivity : AppCompatActivity() {
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
 
-
                     val mykey = FBAuth.getUid()
                     val writerUid = dataModel?.uid
                     if(mykey.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
+                    }else{
+
                     }
 
                 }catch (e: Exception){
@@ -207,7 +211,8 @@ class PostActivity : AppCompatActivity() {
             .child(key)
             .push()
             .setValue(CommentModel(comment,FBAuth.getEmail(),FBAuth.getTime()
-            ))
+            )
+            )
 
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_SHORT).show()
         binding.commentArea.setText("")

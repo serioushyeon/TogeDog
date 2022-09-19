@@ -66,17 +66,11 @@ class ProfileFragment : Fragment() {
             }
         })
 
-        binding.profileBackBtn.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .remove(this)
-                .commit()
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-
         binding.logOutBtn.setOnClickListener {
+            val intent = Intent(activity,LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             auth.signOut()
-            startActivity(Intent(activity,LoginActivity::class.java))
-            requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            startActivity(intent)
         }
         return binding.root
     }
