@@ -13,6 +13,7 @@ import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityBoardWriteBinding
 import com.example.dangdangee.map.MarkerRegisterActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
@@ -35,8 +36,8 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
-            val eid = FBAuth.getEmail()
             val ukey = FBAuth.getUid()
+            val eid = FBAuth.getEmail()
             val dogname = binding.evDogName.text.toString()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
@@ -70,7 +71,6 @@ class BoardWriteActivity : AppCompatActivity() {
             intent.putExtra("breed", breed)
             intent.putExtra("name", dogname)
             startActivity(intent)
-            //finish()
         }
 
         binding.ivProfile.setOnClickListener {

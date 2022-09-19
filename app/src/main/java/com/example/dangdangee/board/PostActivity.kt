@@ -179,13 +179,13 @@ class PostActivity : AppCompatActivity() {
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
                     Log.d(TAG, dataSnapshot.toString())
                     binding.tvTitle.text = dataModel?.title
-                    binding.tvWriter.text = dataModel?.ekey
+                    binding.tvWriter.text = dataModel?.ekey // nickname
                     binding.tvBreed.text = dataModel?.breed
                     binding.tvTime.text = dataModel?.lostday
                     binding.tvText.text = dataModel?.content
                     binding.tvRealtime.text = dataModel?.time
 
-                    val mykey = FBAuth.getUid()
+                    val mykey = FBAuth.getUid() // user key value
                     val writerUid = dataModel?.uid
                     if(mykey.equals(writerUid)){
                         binding.boardSettingIcon.isVisible = true
