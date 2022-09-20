@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.databinding.ActivityPathBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -26,7 +27,6 @@ import com.naver.maps.map.overlay.PathOverlay
 import com.naver.maps.map.util.FusedLocationSource
 
 class PathActivity: AppCompatActivity(), OnMapReadyCallback {
-    private lateinit var mapRef: DatabaseReference
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private var markers = mutableListOf<MapModel>()
@@ -37,7 +37,6 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        mapRef = Firebase.database.getReference("Marker")
         key = intent.getStringExtra("key")!!
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
@@ -104,7 +103,7 @@ class PathActivity: AppCompatActivity(), OnMapReadyCallback {
                 Log.w(ContentValues.TAG, "postComments:onCancelled", databaseError.toException())
             }
         }
-        mapRef.addChildEventListener(queryListener)
+        FBRef.mapRef.addChildEventListener(queryListener)
     }
 
     fun updatePath(){

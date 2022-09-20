@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBAuth
 import com.example.dangdangee.databinding.ActivityJoinBinding
 import com.example.dangdangee.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -18,15 +19,13 @@ import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        auth = Firebase.auth
+        FBAuth.auth
 
         binding.loginJoinBtn.setOnClickListener {
             val intent = Intent(this, JoinActivity::class.java)
@@ -44,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
             } else if (password.isNullOrEmpty()) {
                 Toast.makeText(this, "사용자 비밀번호를 반드시 입력하시오", Toast.LENGTH_SHORT).show()
             } else {
-                auth.signInWithEmailAndPassword(email, password)
+                FBAuth.auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()

@@ -25,6 +25,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class PostActivity : AppCompatActivity() {
@@ -142,10 +145,9 @@ class PostActivity : AppCompatActivity() {
             startActivity(intent)
         }
         alertDialog.findViewById<Button>(R.id.deletebtn)?.setOnClickListener{
-            var mapRef = Firebase.database.getReference("Marker")
             FBRef.boardRef.child(key).child("mid").get().addOnSuccessListener {
                 mid = it.value.toString()
-                mapRef.child(mid).removeValue()
+                FBRef.mapRef.child(mid).removeValue()
             } //게시글 삭제 시 마커도 삭제
             FBRef.boardRef.child(key).removeValue()
 
@@ -153,19 +155,20 @@ class PostActivity : AppCompatActivity() {
         }
     }
 
-    private fun getImageData(key: String){
+    private fun getImageData(key: String) {
         // Reference to an image file in Cloud Storage
         val storageReference = Firebase.storage.reference.child(key + ".png")
 
         // ImageView in your Activity
         val imageViewFromFB = binding.ivPostProfile
-
-        storageReference.downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Glide.with(this)
-                    .load(task.result)
-                    .into(imageViewFromFB)
-            } else {
+        CoroutineScope(Dispatchers.Main).launch {
+            storageReference.downloadUrl.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Glide.with(this@PostActivity)
+                        .load(task.result)
+                        .into(imageViewFromFB)
+                } else {
+                }
             }
         }
     }

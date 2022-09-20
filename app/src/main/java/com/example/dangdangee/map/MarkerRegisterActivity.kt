@@ -33,7 +33,7 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var mid : String
     private  lateinit var name : String
     private  lateinit var breed : String
-    private lateinit var mapref: DatabaseReference
+
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
 
@@ -42,8 +42,6 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        mapref = Firebase.database.getReference("Marker")
 
         //현재 위치 사용 처리
         locationSource =
@@ -141,8 +139,8 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
     //마커 파이어베이스 등록 함수
     private fun addMarkerDB(mapModel: MapModel){
         key = intent.getStringExtra("key").toString()
-        mid = mapref.push().key.toString() //마커 등록하면서 키값 알아내기
-        mapref.child(mid).setValue(mapModel)
+        mid = FBRef.mapRef.push().key.toString() //마커 등록하면서 키값 알아내기
+        FBRef.mapRef.child(mid).setValue(mapModel)
     }
 
     companion object {

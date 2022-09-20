@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
         binding.rvPostList.apply {
             getData()
-
             layoutManager = GridLayoutManager(requireContext(),2)
             setHasFixedSize(true)
             customAdapter = CustomAdapter(boardDataList)
@@ -46,9 +45,6 @@ class HomeFragment : Fragment() {
 
 
     private fun getData(){
-        val database = Firebase.database
-        val boardRef = database.getReference("board")
-
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                     boardDataList.clear()

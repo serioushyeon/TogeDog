@@ -63,15 +63,6 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
 
 
         }
-        // ImageView in your Activity
-       /* val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
-        val imageViewFromFB = holder.image
-
-            holder.apply {
-                Glide.with(ctext)
-                    .load(storageReference.downloadUrl)
-                    .into(imageViewFromFB)
-         q  }*/
         holder.title.text=item.get(position).title
         Log.d("check33", item.get(position).title)
         holder.writer.text=item.get(position).ekey

@@ -21,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 
 class JoinActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+
 
     private lateinit var binding: ActivityJoinBinding
 
@@ -29,21 +29,21 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
 
-        auth = Firebase.auth
+        FBAuth.auth
         binding.joinAppBtn.setOnClickListener {
             if (validation()) {
                 val email = binding.emailArea.text.toString()
                 val password = binding.passwordArea1.text.toString()
                 val nickn = binding.nicknameArea.text.toString()
 
-                auth.createUserWithEmailAndPassword(email, password)
+                FBAuth.auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             FBRef.boardRef
                                 .child("User").child(FBAuth.getUid())
                                 .setValue(nickn)
                             Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
-                            val user = auth.currentUser
+                            val user =  FBAuth.auth.currentUser
                             val intent = Intent(this, MainActivity::class.java)
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 엑티비티 없애기

@@ -4,28 +4,17 @@ import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FBAuth {
+object FBAuth {
 
-    companion object{
-        private lateinit var auth: FirebaseAuth
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         fun getUid() : String{
-
-            auth = FirebaseAuth.getInstance()
-
             return auth.currentUser?.uid.toString()
-
         }
 
         fun getEmail() : String{
-            auth = FirebaseAuth.getInstance()
-
             return auth.currentUser?.email.toString()
         }
-
-
-
-
 
         fun getTime() : String{
             val currentDataTime = Calendar.getInstance().time
@@ -33,5 +22,4 @@ class FBAuth {
 
             return dataFormat
         }
-    }
 }
