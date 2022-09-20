@@ -8,12 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dangdangee.R
 import com.example.dangdangee.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.net.HttpCookie.parse
+import java.net.URI
+import java.net.URL
+import java.util.logging.Level.parse
 
 class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<CustomAdapter.Viewholder>() {
     private val boardKeyList = arrayListOf<String>()
@@ -33,7 +44,25 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
 
     override fun onBindViewHolder(holder: CustomAdapter.Viewholder, position: Int) {
         getData()
-        val ctext = holder.itemView.context
+        val context = holder.itemView.context
+        val imView = item.get(position).imUrl
+        Log.d("checkim",item.get(position).imUrl)
+        Log.d("checkekey",item.get(position).ekey)
+        Log.d("checkuid",item.get(position).uid)
+        Log.d("checkdogname",item.get(position).dogname)
+        Log.d("checkbreed",item.get(position).breed)
+        Log.d("checklostday",item.get(position).lostday)
+        Log.d("checkcontent",item.get(position).content)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            holder.apply {
+                Glide.with(context)
+                    .load(imView)
+                    .into(holder.image)
+            }
+
+
+        }
         // ImageView in your Activity
        /* val storageReference = Firebase.storage.reference.child(boardKeyList[position] + ".png")
         val imageViewFromFB = holder.image
@@ -44,11 +73,12 @@ class CustomAdapter(val item : ArrayList<BoardModel>) : RecyclerView.Adapter<Cus
                     .into(imageViewFromFB)
          q  }*/
         holder.title.text=item.get(position).title
+        Log.d("check33", item.get(position).title)
         holder.writer.text=item.get(position).ekey
 
 
         holder.itemView.setOnClickListener{
-            onClick(ctext,position)
+            onClick(context,position)
         }
     }
 

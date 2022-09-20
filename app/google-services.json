@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "227316437677-bik1325p3r8c472p9krfgcm9r2sk6euq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dangdangee",
+            "certificate_hash": "2398d004d9be7da6dd6a2d4f8842487de5c9016d"
+          }
+        },
+        {
           "client_id": "227316437677-n7qa34ep6nhvvv2ao6id4aevl3bdmeep.apps.googleusercontent.com",
           "client_type": 3
         }

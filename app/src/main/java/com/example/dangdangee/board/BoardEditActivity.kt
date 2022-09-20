@@ -64,14 +64,17 @@ class BoardEditActivity : AppCompatActivity() {
 
         FBRef.boardRef
             .child(key)
-            .setValue(BoardModel( binding.evTitle2.text.toString(),
-                FBAuth.getEmail(),
-                FBAuth.getUid(),
-                binding.evDogName2.text.toString(),
-                binding.evBreed2.text.toString(),
-                binding.evTime2.text.toString(),
-                binding.evText2.text.toString(),
-                FBAuth.getTime()))
+            .setValue(BoardModel(
+                title2,
+                eid2,
+                ukey2,
+                dogname2,
+                breed2,
+                lostday2,
+                content2,
+                time2
+            )
+            )       
         var mapRef = Firebase.database.getReference("Marker")
         FBRef.boardRef.child(key).child("mid").get().addOnSuccessListener {
             mid = it.value.toString()

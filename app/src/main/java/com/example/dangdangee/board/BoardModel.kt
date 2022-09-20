@@ -1,5 +1,7 @@
 package com.example.dangdangee.board
 
+import java.net.URL
+
 data class BoardModel (
     val title : String = "",
     val ekey : String ="",
@@ -9,5 +11,6 @@ data class BoardModel (
     val lostday : String = "",
     val content : String = "",
     val time : String = "",
-    val mid : String = "",
+    val imUrl : String = "",
+    val mid : String = ""
 )
