@@ -32,6 +32,7 @@ class ProfileFragment : Fragment() {
 
         val profileName = binding.profileName
         profileName.setText(FBAuth.getDisplayName())
+        binding.profileEmail.text = FBAuth.getEmail()
         val p1 = binding.p1 // profileName이 속한 layout
         val profilePassword = binding.profilePassword
         val p3 = binding.p3 // profilePassword가 속한 layout
@@ -77,7 +78,7 @@ class ProfileFragment : Fragment() {
             //FBAuth.setPassword(profilePassword.text.toString()) // 비밀번호 바뀌어서 막아놓음
         }
 
-        binding.logOutBtn.setOnClickListener {
+        binding.p4.setOnClickListener { // logoutBtn이 포함된 layout
             val intent = Intent(activity,LoginActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
