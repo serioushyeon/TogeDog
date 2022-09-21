@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity(){
     private val homeFragment: HomeFragment by lazy { HomeFragment() }
     private val profileFragment: ProfileFragment by lazy { ProfileFragment() }
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+    var backKeyPressedTime : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -40,5 +43,16 @@ class MainActivity : AppCompatActivity(){
             }
             false
         })
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+
+        if(System.currentTimeMillis() > backKeyPressedTime + 2500) {
+            backKeyPressedTime = System.currentTimeMillis();
+            return;
+        } else {
+            finishAffinity()
+        }
     }
 }

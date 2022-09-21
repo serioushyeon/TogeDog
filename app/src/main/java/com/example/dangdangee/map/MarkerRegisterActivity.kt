@@ -147,3 +147,4 @@ class MarkerRegisterActivity : AppCompatActivity(), OnMapReadyCallback{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 }
+
