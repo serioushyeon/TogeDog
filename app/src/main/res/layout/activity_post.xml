@@ -27,7 +27,7 @@
                 <ImageView
                     android:id="@+id/iv_post_profile"
                     android:layout_width="wrap_content"
-                    android:layout_height="300dp"
+                    android:layout_height="270dp"
                     android:contentDescription="강아지 사진"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/dangdang" />
@@ -40,11 +40,11 @@
                         android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
                         android:text="게시글 제목"
                         android:textColor="#000000"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -53,11 +53,11 @@
                         android:id="@+id/tv_writer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="8dp"
                         android:inputType="textPersonName"
                         android:text="작성자"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_title"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -66,10 +66,10 @@
                         android:id="@+id/tv_dogName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="16dp"
                         android:text="강아지 이름"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -91,7 +91,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="16dp"
                         android:text="강아지 종"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/view6"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -113,7 +113,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="16dp"
                         android:text="실종 날짜"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/view"
                         app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
@@ -121,11 +121,11 @@
                         android:id="@+id/tv_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginBottom="32dp"
                         android:text="게시글 내용"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_breed" />
@@ -148,7 +148,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
                         android:text="현재시간"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/boardSettingIcon" />
 
@@ -163,6 +163,7 @@
                         android:gravity="center"
                         android:text="목격 위치 등록"
                         android:textColor="@color/white"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_realtime" />
 

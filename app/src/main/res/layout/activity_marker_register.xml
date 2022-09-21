@@ -33,9 +33,9 @@
     <TextView
         android:id="@+id/register_tv_location"
         android:layout_width="0dp"
-        android:layout_height="73dp"
+        android:layout_height="65dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/background_login_btn"
         android:gravity="center"
         android:paddingHorizontal="12dp"
