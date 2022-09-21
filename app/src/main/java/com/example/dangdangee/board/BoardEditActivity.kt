@@ -53,7 +53,7 @@ class BoardEditActivity : AppCompatActivity() {
 
     private fun editBoardData(key: String){
         val title2 = binding.evTitle2.text.toString()
-        val eid2 = FBAuth.getEmail()
+        val eid2 = FBAuth.getDisplayName()
         val ukey2 = FBAuth.getUid()
         val dogname2 = binding.evDogName2.text.toString()
         val breed2 = binding.evBreed2.text.toString()
@@ -97,7 +97,6 @@ class BoardEditActivity : AppCompatActivity() {
                 try {
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
                     Log.d(ContentValues.TAG, dataSnapshot.toString())
-
 
                     binding.evTitle2.setText(dataModel?.title)
                     binding.evWriter2.text = dataModel?.ekey

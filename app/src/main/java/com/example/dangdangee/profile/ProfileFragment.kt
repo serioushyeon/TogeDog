@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
@@ -36,7 +37,7 @@ class ProfileFragment : Fragment() {
         val p3 = binding.p3 // profilePassword가 속한 layout
         val profileBtn = binding.profileEditBtn
 
-        profilePassword.addTextChangedListener(object :TextWatcher {
+        profilePassword.addTextChangedListener(object :TextWatcher { // 비밀번호 값이 달라지면 색이 바뀜
             var text = ""
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 text = profilePassword.text.toString()
@@ -53,7 +54,7 @@ class ProfileFragment : Fragment() {
             }
         })
 
-        profileName.addTextChangedListener(object :TextWatcher {
+        profileName.addTextChangedListener(object :TextWatcher { // 닉네임 값이 달라지면 색이 바뀜
             var text = ""
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 text = profileName.text.toString()
@@ -72,7 +73,8 @@ class ProfileFragment : Fragment() {
 
         profileBtn.setOnClickListener {
             FBAuth.setDisplayName(profileName.text.toString())
-            FBAuth.setPassword(profilePassword.text.toString())
+            Toast.makeText(context,profileName.text.toString(),Toast.LENGTH_SHORT).show()
+            //FBAuth.setPassword(profilePassword.text.toString()) // 비밀번호 바뀌어서 막아놓음
         }
 
         binding.logOutBtn.setOnClickListener {

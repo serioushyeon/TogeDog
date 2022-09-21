@@ -44,38 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="서울특별시 강남구" />
 
-    <EditText
-        android:id="@+id/subtitle"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/background_login"
-        android:ems="10"
-        android:hint="subtitle"
-        android:inputType="textPersonName"
-        android:minHeight="32dp"
-        android:paddingStart="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/breed2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/background_login"
-        android:ems="10"
-        android:hint="breed"
-        android:inputType="textPersonName"
-        android:minHeight="32dp"
-        android:paddingStart="7dp"
-        app:layout_constraintStart_toEndOf="@+id/subtitle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <ImageView
         android:id="@+id/register_center_marker"
         android:layout_width="wrap_content"

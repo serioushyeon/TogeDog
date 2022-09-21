@@ -213,7 +213,7 @@ class PostActivity : AppCompatActivity() {
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(comment,FBAuth.getEmail(),FBAuth.getTime()
+            .setValue(CommentModel(comment,FBAuth.getDisplayName(),FBAuth.getTime()
             )
             )
 

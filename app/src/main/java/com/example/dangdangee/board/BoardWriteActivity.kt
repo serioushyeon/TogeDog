@@ -27,20 +27,18 @@ class BoardWriteActivity : AppCompatActivity() {
 
     private var isImageUpload = false
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_write)
 
+        binding.evWriter.text = FBAuth.getDisplayName() // 작성자 닉네임으로 바꿔줌
+
         binding.pingping.setOnClickListener {
             val title = binding.evTitle.text.toString()
             val ukey = FBAuth.getUid()
-            val eid = FBAuth.getEmail()
+            val eid = FBAuth.getDisplayName()
             val dogname = binding.evDogName.text.toString()
             val breed = binding.evBreed.text.toString()
             val lostday = binding.evTime.text.toString()
