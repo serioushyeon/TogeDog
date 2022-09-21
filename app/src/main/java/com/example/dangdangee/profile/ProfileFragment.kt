@@ -11,6 +11,8 @@ import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
 import com.example.dangdangee.MainActivity
 import com.example.dangdangee.R
+import com.example.dangdangee.Utils.FBAuth
+import com.example.dangdangee.Utils.FBRef
 import com.example.dangdangee.auth.LoginActivity
 import com.example.dangdangee.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -25,12 +27,14 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): FrameLayout{
         val binding = FragmentProfileBinding.inflate(inflater,container,false)
+        auth = Firebase.auth
+
         val profileName = binding.profileName
+        profileName.setText(FBAuth.getDisplayName())
         val p1 = binding.p1 // profileName이 속한 layout
         val profilePassword = binding.profilePassword
         val p3 = binding.p3 // profilePassword가 속한 layout
         val profileBtn = binding.profileEditBtn
-        auth = Firebase.auth
 
         profilePassword.addTextChangedListener(object :TextWatcher {
             var text = ""
@@ -65,6 +69,11 @@ class ProfileFragment : Fragment() {
                 }
             }
         })
+
+        profileBtn.setOnClickListener {
+            FBAuth.setDisplayName(profileName.text.toString())
+            FBAuth.setPassword(profilePassword.text.toString())
+        }
 
         binding.logOutBtn.setOnClickListener {
             val intent = Intent(activity,LoginActivity::class.java).apply {
