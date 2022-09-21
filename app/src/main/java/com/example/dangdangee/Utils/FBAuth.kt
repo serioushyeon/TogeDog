@@ -1,13 +1,7 @@
 package com.example.dangdangee.Utils
 
-import com.example.dangdangee.auth.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.firestore.auth.User
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,4 +38,3 @@ object FBAuth {
             auth.currentUser?.updatePassword(pwd)
         }
     }
-}

@@ -57,9 +57,6 @@ class JoinActivity : AppCompatActivity() {
             }
                    }
             }
-        }
-    }
-
 
     private fun validation(): Boolean {
         if (binding.nicknameArea.text.isEmpty()) {
@@ -85,5 +82,5 @@ class JoinActivity : AppCompatActivity() {
         return true
 
     }
-
 }
+
