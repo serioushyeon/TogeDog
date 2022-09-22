@@ -47,7 +47,7 @@ class BoardEditActivity : AppCompatActivity() {
             startActivityForResult(gallery, 100)
             isImageUpload = true
         }
-
+//고생
 
     }
 
