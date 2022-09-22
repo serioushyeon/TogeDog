@@ -76,6 +76,8 @@ class PostActivity : AppCompatActivity() {
             val intent = Intent(this, MarkerRegisterActivity::class.java)
             intent.putExtra("key",key)
             intent.putExtra("tag", "P")
+            intent.putExtra("name", binding.tvDogName.text.toString())
+            intent.putExtra("breed", binding.tvBreed.text.toString())
             startActivity(intent)
         }
 
